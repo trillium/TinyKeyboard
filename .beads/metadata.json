@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "server",
+  "dolt_database": "TinyKeyboard",
+  "project_id": "2179855a-39c4-4322-987b-43e44778723e"
+}
