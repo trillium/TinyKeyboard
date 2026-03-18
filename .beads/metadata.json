@@ -2,6 +2,8 @@
   "database": "dolt",
   "backend": "dolt",
   "dolt_mode": "server",
+  "dolt_server_host": "100.111.197.110",
+  "dolt_server_port": 3307,
   "dolt_database": "TinyKeyboard",
-  "project_id": "2179855a-39c4-4322-987b-43e44778723e"
+  "project_id": "443d3d69-2021-47d1-ba1b-45a9035781ff"
 }
