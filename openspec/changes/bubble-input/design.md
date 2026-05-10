@@ -75,6 +75,19 @@ After `insertText()` fires, the keyboard collapses back to hint bar. This matche
 
 [Auto-collapse timing] → If the user submits and wants to compose again immediately, two taps are needed (submit collapses, then tap to expand again). A "stay open" mode could mitigate this but is deferred.
 
+### D7: Thin coordinator / extracted value types for testability
+
+KeyboardViewController is a UIInputViewController subclass — instantiating it in a test context is fragile. All meaningful logic SHALL be extracted into plain Swift types that have zero UIKit dependency:
+
+- `KeyboardState` — state machine enum + transition logic
+- `TextBuffer` — composed text, submit guard, double-space detection
+- `DwellTimer` — timer abstraction with injectable scheduler
+- `PositionStore` — UserDefaults wrapper for bubble position
+
+KeyboardViewController is a thin coordinator that wires these types together and handles UIKit callbacks. It is not unit tested. The extracted types are fully unit tested via XCTest.
+
+**Alternative considered:** Logic inline in KeyboardViewController. Rejected — UIInputViewController is difficult to instantiate in XCTest without a host app; logic would be untestable without UIKit running.
+
 ## Open Questions
 
 - Should the hint bar show any visual indicator at center (a pip, a drag line) or remain fully blank?
