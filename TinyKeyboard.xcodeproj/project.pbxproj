@@ -67,6 +67,7 @@
 		5197F52B0414A3AA5D01C5F3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		72C32E09B6172AF2CEF723C7 /* TinyKeyboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyKeyboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81F4D00C2AF4F7D5F1A5091C /* PositionStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PositionStore.swift; sourceTree = "<group>"; };
+		8AE188517F9745640194E47E /* TinyKeyboardExtension.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = TinyKeyboardExtension.entitlements; sourceTree = "<group>"; };
 		A2000001 /* TinyKeyboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyKeyboardApp.swift; sourceTree = "<group>"; };
 		A2000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A2000003 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +75,7 @@
 		A2000005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3000002 /* TinyKeyboardExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TinyKeyboardExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3000003 /* TinyKeyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyKeyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B93688ED03608627A2D1B788 /* TinyKeyboard.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = TinyKeyboard.entitlements; sourceTree = "<group>"; };
 		C0BDE3A2C5AAF55F9D17CF36 /* DwellTimer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DwellTimer.swift; sourceTree = "<group>"; };
 		D842619A5D18FCDD55E16511 /* TextBuffer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextBuffer.swift; sourceTree = "<group>"; };
 		E22937716A5C2AC05BEC9B29 /* KeyboardState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyboardState.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				A2000001 /* TinyKeyboardApp.swift */,
 				A2000002 /* ContentView.swift */,
 				A2000005 /* Assets.xcassets */,
+				B93688ED03608627A2D1B788 /* TinyKeyboard.entitlements */,
 			);
 			path = TinyKeyboard;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 				D842619A5D18FCDD55E16511 /* TextBuffer.swift */,
 				C0BDE3A2C5AAF55F9D17CF36 /* DwellTimer.swift */,
 				81F4D00C2AF4F7D5F1A5091C /* PositionStore.swift */,
+				8AE188517F9745640194E47E /* TinyKeyboardExtension.entitlements */,
 			);
 			path = TinyKeyboardExtension;
 			sourceTree = "<group>";
@@ -248,9 +252,19 @@
 				TargetAttributes = {
 					A3000001 = {
 						CreatedOnToolsVersion = 15.0;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					A3000004 = {
 						CreatedOnToolsVersion = 15.0;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -408,6 +422,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TinyKeyboard/TinyKeyboard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 85PWBA3B59;
@@ -429,6 +444,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TinyKeyboard/TinyKeyboard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 85PWBA3B59;
@@ -449,6 +465,7 @@
 		B3000001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TinyKeyboardExtension/TinyKeyboardExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 85PWBA3B59;
@@ -467,6 +484,7 @@
 		B3000002 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TinyKeyboardExtension/TinyKeyboardExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 85PWBA3B59;
