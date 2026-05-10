@@ -7,14 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02E86909A349F9FF862E9F63 /* PositionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F4D00C2AF4F7D5F1A5091C /* PositionStore.swift */; };
+		2299D436475F16ADA1208249 /* KeyboardState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22937716A5C2AC05BEC9B29 /* KeyboardState.swift */; };
+		2F9D1BB208B3ADCA5FA3DBF1 /* TextBufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063FC087BFC7B8410DF285B3 /* TextBufferTests.swift */; };
+		394ABC121CC63D8D8C2248A3 /* DwellTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDE3A2C5AAF55F9D17CF36 /* DwellTimer.swift */; };
+		5FD2CD2DBA709C2C10BEA113 /* DwellTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13646658948D19301C4DD8B1 /* DwellTimerTests.swift */; };
+		7FD79857B2F8A5ACF1852244 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5197F52B0414A3AA5D01C5F3 /* XCTest.framework */; };
+		87425733D8DDA25C5B093D96 /* PositionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F4D00C2AF4F7D5F1A5091C /* PositionStore.swift */; };
+		887FFA7B65A83DD28924A7E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F68EE596B0E3CDC45E268BDB /* Foundation.framework */; };
+		9299014D0F9879B2B57E190E /* PositionStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335FFDED34452701C004556 /* PositionStoreTests.swift */; };
+		9944B8A4B7D4BAA9FD07D12B /* DwellTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDE3A2C5AAF55F9D17CF36 /* DwellTimer.swift */; };
 		A1000001 /* TinyKeyboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001 /* TinyKeyboardApp.swift */; };
 		A1000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000002 /* ContentView.swift */; };
 		A1000003 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000003 /* KeyboardViewController.swift */; };
 		A1000004 /* TinyKeyboardExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A3000002 /* TinyKeyboardExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A1000005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000005 /* Assets.xcassets */; };
+		B72511F54BDEDDA9AEF74304 /* KeyboardState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22937716A5C2AC05BEC9B29 /* KeyboardState.swift */; };
+		C3FA3F7D6949BF1B579B336E /* KeyboardStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B73FB3161CC6D8DAA740FA8 /* KeyboardStateTests.swift */; };
+		C7C12C0709569EEE2C862595 /* TextBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D842619A5D18FCDD55E16511 /* TextBuffer.swift */; };
+		D48479D7AF0560CAE6AAD679 /* TextBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D842619A5D18FCDD55E16511 /* TextBuffer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6DB5DA0AAD9C4BE4F21FE36C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3000004;
+			remoteInfo = TinyKeyboard;
+		};
 		A4000001 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A5000001 /* Project object */;
@@ -39,6 +60,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		063FC087BFC7B8410DF285B3 /* TextBufferTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextBufferTests.swift; sourceTree = "<group>"; };
+		13646658948D19301C4DD8B1 /* DwellTimerTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DwellTimerTests.swift; sourceTree = "<group>"; };
+		1B73FB3161CC6D8DAA740FA8 /* KeyboardStateTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyboardStateTests.swift; sourceTree = "<group>"; };
+		3335FFDED34452701C004556 /* PositionStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PositionStoreTests.swift; sourceTree = "<group>"; };
+		5197F52B0414A3AA5D01C5F3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		72C32E09B6172AF2CEF723C7 /* TinyKeyboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyKeyboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		81F4D00C2AF4F7D5F1A5091C /* PositionStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PositionStore.swift; sourceTree = "<group>"; };
 		A2000001 /* TinyKeyboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyKeyboardApp.swift; sourceTree = "<group>"; };
 		A2000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A2000003 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +74,10 @@
 		A2000005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3000002 /* TinyKeyboardExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TinyKeyboardExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3000003 /* TinyKeyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyKeyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0BDE3A2C5AAF55F9D17CF36 /* DwellTimer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DwellTimer.swift; sourceTree = "<group>"; };
+		D842619A5D18FCDD55E16511 /* TextBuffer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextBuffer.swift; sourceTree = "<group>"; };
+		E22937716A5C2AC05BEC9B29 /* KeyboardState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyboardState.swift; sourceTree = "<group>"; };
+		F68EE596B0E3CDC45E268BDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +95,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F9FBF809C9A09DE93E5CC512 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				887FFA7B65A83DD28924A7E6 /* Foundation.framework in Frameworks */,
+				7FD79857B2F8A5ACF1852244 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -72,6 +113,8 @@
 				A7000002 /* TinyKeyboard */,
 				A7000003 /* TinyKeyboardExtension */,
 				A7000004 /* Products */,
+				FB8EAC1D04C99AE4A34919A8 /* Frameworks */,
+				E7405246E553D45BD45CF846 /* TinyKeyboardTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +133,10 @@
 			children = (
 				A2000003 /* KeyboardViewController.swift */,
 				A2000004 /* Info.plist */,
+				E22937716A5C2AC05BEC9B29 /* KeyboardState.swift */,
+				D842619A5D18FCDD55E16511 /* TextBuffer.swift */,
+				C0BDE3A2C5AAF55F9D17CF36 /* DwellTimer.swift */,
+				81F4D00C2AF4F7D5F1A5091C /* PositionStore.swift */,
 			);
 			path = TinyKeyboardExtension;
 			sourceTree = "<group>";
@@ -99,13 +146,61 @@
 			children = (
 				A3000003 /* TinyKeyboard.app */,
 				A3000002 /* TinyKeyboardExtension.appex */,
+				72C32E09B6172AF2CEF723C7 /* TinyKeyboardTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B645CBB3AB5506AB69D87665 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				F68EE596B0E3CDC45E268BDB /* Foundation.framework */,
+				5197F52B0414A3AA5D01C5F3 /* XCTest.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		E7405246E553D45BD45CF846 /* TinyKeyboardTests */ = {
+			isa = PBXGroup;
+			children = (
+				13646658948D19301C4DD8B1 /* DwellTimerTests.swift */,
+				1B73FB3161CC6D8DAA740FA8 /* KeyboardStateTests.swift */,
+				3335FFDED34452701C004556 /* PositionStoreTests.swift */,
+				063FC087BFC7B8410DF285B3 /* TextBufferTests.swift */,
+			);
+			name = TinyKeyboardTests;
+			path = TinyKeyboardTests;
+			sourceTree = "<group>";
+		};
+		FB8EAC1D04C99AE4A34919A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B645CBB3AB5506AB69D87665 /* iOS */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		41083F37728A38FA8D06EC95 /* TinyKeyboardTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A13D7534BF47FC341AFE464F /* Build configuration list for PBXNativeTarget "TinyKeyboardTests" */;
+			buildPhases = (
+				403CD645C3E045D03EE6A9D5 /* Sources */,
+				F9FBF809C9A09DE93E5CC512 /* Frameworks */,
+				3E115E181DA35DDEEB5C1F30 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C9659FED74C0F8F8286E793C /* PBXTargetDependency */,
+			);
+			name = TinyKeyboardTests;
+			productName = TinyKeyboardTests;
+			productReference = 72C32E09B6172AF2CEF723C7 /* TinyKeyboardTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		A3000001 /* TinyKeyboardExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8000002 /* Build configuration list for PBXNativeTarget "TinyKeyboardExtension" */;
@@ -174,11 +269,19 @@
 			targets = (
 				A3000004 /* TinyKeyboard */,
 				A3000001 /* TinyKeyboardExtension */,
+				41083F37728A38FA8D06EC95 /* TinyKeyboardTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3E115E181DA35DDEEB5C1F30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A9000005 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -190,6 +293,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		403CD645C3E045D03EE6A9D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FD2CD2DBA709C2C10BEA113 /* DwellTimerTests.swift in Sources */,
+				C3FA3F7D6949BF1B579B336E /* KeyboardStateTests.swift in Sources */,
+				9299014D0F9879B2B57E190E /* PositionStoreTests.swift in Sources */,
+				2F9D1BB208B3ADCA5FA3DBF1 /* TextBufferTests.swift in Sources */,
+				2299D436475F16ADA1208249 /* KeyboardState.swift in Sources */,
+				D48479D7AF0560CAE6AAD679 /* TextBuffer.swift in Sources */,
+				9944B8A4B7D4BAA9FD07D12B /* DwellTimer.swift in Sources */,
+				02E86909A349F9FF862E9F63 /* PositionStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A9000001 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -204,6 +322,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1000003 /* KeyboardViewController.swift in Sources */,
+				B72511F54BDEDDA9AEF74304 /* KeyboardState.swift in Sources */,
+				C7C12C0709569EEE2C862595 /* TextBuffer.swift in Sources */,
+				394ABC121CC63D8D8C2248A3 /* DwellTimer.swift in Sources */,
+				87425733D8DDA25C5B093D96 /* PositionStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,9 +337,29 @@
 			target = A3000001 /* TinyKeyboardExtension */;
 			targetProxy = A4000001 /* PBXContainerItemProxy */;
 		};
+		C9659FED74C0F8F8286E793C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TinyKeyboard;
+			target = A3000004 /* TinyKeyboard */;
+			targetProxy = 6DB5DA0AAD9C4BE4F21FE36C /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		A50EF03CA13E5D8076297ACE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trillium.TinyKeyboard.TinyKeyboardTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TinyKeyboard.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TinyKeyboard";
+			};
+			name = Debug;
+		};
 		B1000001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -340,9 +482,33 @@
 			};
 			name = Release;
 		};
+		D32FB849AD9A18B42FE63942 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trillium.TinyKeyboard.TinyKeyboardTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TinyKeyboard.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TinyKeyboard";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A13D7534BF47FC341AFE464F /* Build configuration list for PBXNativeTarget "TinyKeyboardTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D32FB849AD9A18B42FE63942 /* Release */,
+				A50EF03CA13E5D8076297ACE /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A8000001 /* Build configuration list for PBXNativeTarget "TinyKeyboard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
