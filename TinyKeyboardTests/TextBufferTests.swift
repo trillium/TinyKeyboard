@@ -1,5 +1,4 @@
 import XCTest
-@testable import TinyKeyboardExtension
 
 final class TextBufferTests: XCTestCase {
 

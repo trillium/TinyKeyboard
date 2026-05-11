@@ -1,5 +1,4 @@
 import XCTest
-@testable import TinyKeyboardExtension
 
 /// Tests for `DwellTimer` using a synchronous, controllable scheduler.
 ///

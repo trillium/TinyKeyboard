@@ -1,6 +1,5 @@
 import CoreGraphics
 import XCTest
-@testable import TinyKeyboardExtension
 
 final class PositionStoreTests: XCTestCase {
 
