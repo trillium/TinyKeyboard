@@ -29,7 +29,7 @@ struct ContentView: View {
             }
             .font(.callout)
             .padding()
-            .background(Color(.systemGray6))
+            .background(Color(UIColor.systemGray6))
             .cornerRadius(12)
             .padding(.horizontal, 20)
 
