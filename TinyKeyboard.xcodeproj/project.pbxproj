@@ -11,10 +11,12 @@
 		05918366F8EE262FFDF5FE52 /* KeyboardLayoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B73CC602E3FB6C8F4BBEA92 /* KeyboardLayoutUITests.swift */; };
 		2299D436475F16ADA1208249 /* KeyboardState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22937716A5C2AC05BEC9B29 /* KeyboardState.swift */; };
 		2F9D1BB208B3ADCA5FA3DBF1 /* TextBufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063FC087BFC7B8410DF285B3 /* TextBufferTests.swift */; };
+		3087E3C054B4193AF7046DB5 /* BubbleWidgetViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BD73914F4BC4E19A762B7F /* BubbleWidgetViewTests.swift */; };
 		394ABC121CC63D8D8C2248A3 /* DwellTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDE3A2C5AAF55F9D17CF36 /* DwellTimer.swift */; };
 		4827618B676BF4E8ACF10335 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5197F52B0414A3AA5D01C5F3 /* XCTest.framework */; };
 		586533C1792B4B7FE26A829F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F68EE596B0E3CDC45E268BDB /* Foundation.framework */; };
 		5FD2CD2DBA709C2C10BEA113 /* DwellTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13646658948D19301C4DD8B1 /* DwellTimerTests.swift */; };
+		662B38515227AF10E628AAA9 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000003 /* KeyboardViewController.swift */; };
 		7FD79857B2F8A5ACF1852244 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5197F52B0414A3AA5D01C5F3 /* XCTest.framework */; };
 		87425733D8DDA25C5B093D96 /* PositionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F4D00C2AF4F7D5F1A5091C /* PositionStore.swift */; };
 		887FFA7B65A83DD28924A7E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F68EE596B0E3CDC45E268BDB /* Foundation.framework */; };
@@ -78,6 +80,7 @@
 		5B73CC602E3FB6C8F4BBEA92 /* KeyboardLayoutUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutUITests.swift; sourceTree = "<group>"; };
 		7260634E33A97EE47C9A2546 /* TinyKeyboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyKeyboardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72C32E09B6172AF2CEF723C7 /* TinyKeyboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyKeyboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		77BD73914F4BC4E19A762B7F /* BubbleWidgetViewTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BubbleWidgetViewTests.swift; sourceTree = "<group>"; };
 		81F4D00C2AF4F7D5F1A5091C /* PositionStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PositionStore.swift; sourceTree = "<group>"; };
 		8AE188517F9745640194E47E /* TinyKeyboardExtension.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = TinyKeyboardExtension.entitlements; sourceTree = "<group>"; };
 		A2000001 /* TinyKeyboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyKeyboardApp.swift; sourceTree = "<group>"; };
@@ -203,6 +206,7 @@
 				1B73FB3161CC6D8DAA740FA8 /* KeyboardStateTests.swift */,
 				3335FFDED34452701C004556 /* PositionStoreTests.swift */,
 				063FC087BFC7B8410DF285B3 /* TextBufferTests.swift */,
+				77BD73914F4BC4E19A762B7F /* BubbleWidgetViewTests.swift */,
 			);
 			name = TinyKeyboardTests;
 			path = TinyKeyboardTests;
@@ -385,6 +389,8 @@
 				D48479D7AF0560CAE6AAD679 /* TextBuffer.swift in Sources */,
 				9944B8A4B7D4BAA9FD07D12B /* DwellTimer.swift in Sources */,
 				02E86909A349F9FF862E9F63 /* PositionStore.swift in Sources */,
+				3087E3C054B4193AF7046DB5 /* BubbleWidgetViewTests.swift in Sources */,
+				662B38515227AF10E628AAA9 /* KeyboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
