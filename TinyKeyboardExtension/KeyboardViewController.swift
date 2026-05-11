@@ -17,8 +17,6 @@ class KeyboardViewController: UIInputViewController {
         static let collapsedHeight: CGFloat = 44
         static let expandedHeight: CGFloat = 350
         static let animationDuration: TimeInterval = 0.28
-        static let cornerRadius: CGFloat = 12
-        static let borderWidth: CGFloat = 1
         static let dwellInterval: TimeInterval = 1.2
     }
 
@@ -42,11 +40,19 @@ class KeyboardViewController: UIInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let inputView = self.inputView else { return }
+        // Replace the system inputView — the default uses UIInputViewStyle.keyboard
+        // which paints opaque keyboard chrome regardless of backgroundColor = .clear.
+        // UIInputViewStyle.default skips that private background renderer.
+        let customInputView = UIInputView(frame: .zero, inputViewStyle: .default)
+        customInputView.allowsSelfSizing = true  // required for height constraints on device
+        self.inputView = customInputView
+
+        // Clear the root view too — the system renders both layers.
+        self.view.backgroundColor = .clear
 
         setupLogicTypes()
-        setupInputView(inputView)
-        setupBubbleWidget(inputView)
+        setupInputView(customInputView)
+        setupBubbleWidget(customInputView)
         restorePosition()
 
         // Observe state transitions to drive UIKit animations.
@@ -57,10 +63,6 @@ class KeyboardViewController: UIInputViewController {
             }
         }
 
-        // iOS 17+ trait change API (replaces deprecated traitCollectionDidChange).
-        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { [weak self] (_: UIInputViewController, _: UITraitCollection) in
-            self?.updateBorderColor()
-        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -94,9 +96,9 @@ class KeyboardViewController: UIInputViewController {
 
     private func setupInputView(_ inputView: UIView) {
         inputView.backgroundColor = .clear
-        inputView.layer.cornerRadius = Layout.cornerRadius
-        inputView.layer.borderWidth = Layout.borderWidth
-        inputView.layer.masksToBounds = true
+        // masksToBounds = false allows the bubble widget to draw outside the
+        // collapsed 44pt bar when expanded.
+        inputView.layer.masksToBounds = false
 
         let heightConstraint = inputView.heightAnchor.constraint(
             equalToConstant: Layout.collapsedHeight
@@ -105,19 +107,8 @@ class KeyboardViewController: UIInputViewController {
         heightConstraint.isActive = true
         self.heightConstraint = heightConstraint
 
-        // Blur background.
-        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-        inputView.addSubview(blurView)
-        NSLayoutConstraint.activate([
-            blurView.leadingAnchor.constraint(equalTo: inputView.leadingAnchor),
-            blurView.trailingAnchor.constraint(equalTo: inputView.trailingAnchor),
-            blurView.topAnchor.constraint(equalTo: inputView.topAnchor),
-            blurView.bottomAnchor.constraint(equalTo: inputView.bottomAnchor),
-        ])
-
-        updateBorderColor()
+        // No full-width blur here — the collapsed bar should be invisible.
+        // Visual material lives on the bubble widget container only.
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleHintBarTap))
         inputView.addGestureRecognizer(tap)
@@ -168,15 +159,6 @@ class KeyboardViewController: UIInputViewController {
         // Position is managed by BubbleWidgetView's internal layout. If a saved
         // center is available it is applied after the bubble is visible.
         // Deferred to first expand so bounds are determined.
-    }
-
-    // MARK: - Border color
-
-    private func updateBorderColor() {
-        let isDark = traitCollection.userInterfaceStyle == .dark
-        inputView?.layer.borderColor = isDark
-            ? UIColor.white.withAlphaComponent(0.5).cgColor
-            : UIColor.black.withAlphaComponent(0.5).cgColor
     }
 
     // MARK: - State transitions
