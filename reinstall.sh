@@ -1,5 +1,6 @@
 #!/bin/bash
 # Rebuild and reinstall TinyKeyboard to refresh provisioning profile
+# Requires: iPhone connected and trusted, Apple ID signed in to Xcode
 set -e
 
 PROJECT_DIR="/Users/trilliumsmith/code/TinyKeyboard"
@@ -12,6 +13,7 @@ xcodebuild -project TinyKeyboard.xcodeproj \
   -scheme TinyKeyboard \
   -destination "platform=iOS,id=$DEVICE_ID" \
   -allowProvisioningUpdates \
+  -allowProvisioningDeviceRegistration \
   build -quiet
 
 xcrun devicectl device install app \
