@@ -12,12 +12,14 @@ struct ContentView: View {
             Text("TinyKeyboard")
                 .font(.largeTitle)
                 .fontWeight(.bold)
+                .accessibilityIdentifier("instructions-label")
 
             Text("A near-invisible keyboard for voice-first input.")
                 .font(.body)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 40)
+                .accessibilityIdentifier("instructions-subtitle")
 
             VStack(alignment: .leading, spacing: 12) {
                 Label("Open Settings → General → Keyboard → Keyboards", systemImage: "1.circle.fill")
@@ -36,6 +38,7 @@ struct ContentView: View {
                 .textFieldStyle(.roundedBorder)
                 .padding(.horizontal, 40)
                 .padding(.top, 20)
+                .accessibilityIdentifier("test-text-field")
         }
         .padding()
     }

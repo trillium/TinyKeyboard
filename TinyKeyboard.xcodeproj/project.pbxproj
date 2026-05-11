@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		02E86909A349F9FF862E9F63 /* PositionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F4D00C2AF4F7D5F1A5091C /* PositionStore.swift */; };
+		05918366F8EE262FFDF5FE52 /* KeyboardLayoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B73CC602E3FB6C8F4BBEA92 /* KeyboardLayoutUITests.swift */; };
 		2299D436475F16ADA1208249 /* KeyboardState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22937716A5C2AC05BEC9B29 /* KeyboardState.swift */; };
 		2F9D1BB208B3ADCA5FA3DBF1 /* TextBufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063FC087BFC7B8410DF285B3 /* TextBufferTests.swift */; };
 		394ABC121CC63D8D8C2248A3 /* DwellTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDE3A2C5AAF55F9D17CF36 /* DwellTimer.swift */; };
+		4827618B676BF4E8ACF10335 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5197F52B0414A3AA5D01C5F3 /* XCTest.framework */; };
+		586533C1792B4B7FE26A829F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F68EE596B0E3CDC45E268BDB /* Foundation.framework */; };
 		5FD2CD2DBA709C2C10BEA113 /* DwellTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13646658948D19301C4DD8B1 /* DwellTimerTests.swift */; };
 		7FD79857B2F8A5ACF1852244 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5197F52B0414A3AA5D01C5F3 /* XCTest.framework */; };
 		87425733D8DDA25C5B093D96 /* PositionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F4D00C2AF4F7D5F1A5091C /* PositionStore.swift */; };
@@ -29,6 +32,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2E3827F99F5921F24EF727CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3000004;
+			remoteInfo = TinyKeyboard;
+		};
 		6DB5DA0AAD9C4BE4F21FE36C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A5000001 /* Project object */;
@@ -65,6 +75,8 @@
 		1B73FB3161CC6D8DAA740FA8 /* KeyboardStateTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyboardStateTests.swift; sourceTree = "<group>"; };
 		3335FFDED34452701C004556 /* PositionStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PositionStoreTests.swift; sourceTree = "<group>"; };
 		5197F52B0414A3AA5D01C5F3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		5B73CC602E3FB6C8F4BBEA92 /* KeyboardLayoutUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutUITests.swift; sourceTree = "<group>"; };
+		7260634E33A97EE47C9A2546 /* TinyKeyboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyKeyboardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72C32E09B6172AF2CEF723C7 /* TinyKeyboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyKeyboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81F4D00C2AF4F7D5F1A5091C /* PositionStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PositionStore.swift; sourceTree = "<group>"; };
 		8AE188517F9745640194E47E /* TinyKeyboardExtension.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = TinyKeyboardExtension.entitlements; sourceTree = "<group>"; };
@@ -83,6 +95,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		19654D3E59BEC59158EF6A1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				586533C1792B4B7FE26A829F /* Foundation.framework in Frameworks */,
+				4827618B676BF4E8ACF10335 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A9000002 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -117,6 +138,7 @@
 				A7000004 /* Products */,
 				FB8EAC1D04C99AE4A34919A8 /* Frameworks */,
 				E7405246E553D45BD45CF846 /* TinyKeyboardTests */,
+				BDA7CB818E0A73BCC2355047 /* TinyKeyboardUITests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,6 +173,7 @@
 				A3000003 /* TinyKeyboard.app */,
 				A3000002 /* TinyKeyboardExtension.appex */,
 				72C32E09B6172AF2CEF723C7 /* TinyKeyboardTests.xctest */,
+				7260634E33A97EE47C9A2546 /* TinyKeyboardUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,6 +185,15 @@
 				5197F52B0414A3AA5D01C5F3 /* XCTest.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		BDA7CB818E0A73BCC2355047 /* TinyKeyboardUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5B73CC602E3FB6C8F4BBEA92 /* KeyboardLayoutUITests.swift */,
+			);
+			name = TinyKeyboardUITests;
+			path = TinyKeyboardUITests;
 			sourceTree = "<group>";
 		};
 		E7405246E553D45BD45CF846 /* TinyKeyboardTests */ = {
@@ -204,6 +236,24 @@
 			productName = TinyKeyboardTests;
 			productReference = 72C32E09B6172AF2CEF723C7 /* TinyKeyboardTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		535F71ACD563AC526C2EE1FF /* TinyKeyboardUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4AB5618963D2DE01D2C098AE /* Build configuration list for PBXNativeTarget "TinyKeyboardUITests" */;
+			buildPhases = (
+				3786F27EA82D0F0BD787B734 /* Sources */,
+				19654D3E59BEC59158EF6A1A /* Frameworks */,
+				DFDCFA864DDCF6825ACA430D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D56AADB9D90E753577F519AD /* PBXTargetDependency */,
+			);
+			name = TinyKeyboardUITests;
+			productName = TinyKeyboardUITests;
+			productReference = 7260634E33A97EE47C9A2546 /* TinyKeyboardUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		A3000001 /* TinyKeyboardExtension */ = {
 			isa = PBXNativeTarget;
@@ -284,6 +334,7 @@
 				A3000004 /* TinyKeyboard */,
 				A3000001 /* TinyKeyboardExtension */,
 				41083F37728A38FA8D06EC95 /* TinyKeyboardTests */,
+				535F71ACD563AC526C2EE1FF /* TinyKeyboardUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -304,9 +355,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DFDCFA864DDCF6825ACA430D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3786F27EA82D0F0BD787B734 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05918366F8EE262FFDF5FE52 /* KeyboardLayoutUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		403CD645C3E045D03EE6A9D5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -357,9 +423,29 @@
 			target = A3000004 /* TinyKeyboard */;
 			targetProxy = 6DB5DA0AAD9C4BE4F21FE36C /* PBXContainerItemProxy */;
 		};
+		D56AADB9D90E753577F519AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TinyKeyboard;
+			target = A3000004 /* TinyKeyboard */;
+			targetProxy = 2E3827F99F5921F24EF727CA /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		62C34FDAC1C2AF2CE02E8E44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trillium.TinyKeyboard.TinyKeyboardUITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TinyKeyboard;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		A50EF03CA13E5D8076297ACE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -515,9 +601,31 @@
 			};
 			name = Release;
 		};
+		DAE66B0C342F36311EFBBC38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trillium.TinyKeyboard.TinyKeyboardUITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TinyKeyboard;
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4AB5618963D2DE01D2C098AE /* Build configuration list for PBXNativeTarget "TinyKeyboardUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62C34FDAC1C2AF2CE02E8E44 /* Release */,
+				DAE66B0C342F36311EFBBC38 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A13D7534BF47FC341AFE464F /* Build configuration list for PBXNativeTarget "TinyKeyboardTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
