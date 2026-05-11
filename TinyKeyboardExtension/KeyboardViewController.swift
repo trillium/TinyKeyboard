@@ -56,16 +56,16 @@ class KeyboardViewController: UIInputViewController {
             case .collapsed: self?.animateCollapse()
             }
         }
+
+        // iOS 17+ trait change API (replaces deprecated traitCollectionDidChange).
+        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { [weak self] (_: UIInputViewController, _: UITraitCollection) in
+            self?.updateBorderColor()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         dwellTimer.cancel()
-    }
-
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        updateBorderColor()
     }
 
     // MARK: - Setup: logic types
@@ -83,8 +83,7 @@ class KeyboardViewController: UIInputViewController {
             self?.collapse()
         }
 
-        dwellTimer = DwellTimer(interval: Layout.dwellInterval, scheduler: { [weak self] work in
-            guard let self else { return }
+        dwellTimer = DwellTimer(interval: Layout.dwellInterval, scheduler: { work in
             DispatchQueue.main.asyncAfter(deadline: .now() + Layout.dwellInterval, execute: work)
         }, callback: { [weak self] in
             self?.textBuffer.submit()

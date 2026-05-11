@@ -1,3 +1,5 @@
+import Foundation
+
 /// Fires a callback after a configurable interval following the most recent
 /// `keyDidChange()` call. Resetting before the interval fires cancels the
 /// previous pending callback and restarts the countdown.
