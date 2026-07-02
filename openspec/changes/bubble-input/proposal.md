@@ -1,3 +1,5 @@
+**ABANDONED 2026-07-02** — bubble workflow confirmed impossible; see BUBBLE_SPEC.md banner.
+
 ## Why
 
 TinyKeyboard solves one problem: get a keyboard out of the way so voice-first users have full screen for dictation. But users occasionally need to type something — a name, a number, a correction — without leaving the keyboard. Right now their only option is the globe key, which switches away from TinyKeyboard entirely and abandons the minimal-footprint posture.
