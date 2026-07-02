@@ -39,6 +39,8 @@ The core contradiction, in one table:
 
 ## C. Keyboard switching — a likely App Store rejection
 
+> 2026-07-02 note, from the restored beads (`TinyKeyboard-2h0.7`, filed 2026-03-18): iOS renders a system dock bar (~78pt — globe icon, mic icon, home-indicator safe area) *beneath* every keyboard extension, outside the extension's view hierarchy. This partially answers Q8/Q9 — the **system** dock provides the globe, so switching away works without the extension rendering one. It also bounds the product claim: the realistic minimum footprint is ~78pt of system chrome, not a true 1px — "1px" means 1px of *our* keyboard. Q8's remaining live part: verify on home-button devices where `needsInputModeSwitchKey` is true and no system dock exists.
+
 8. **Where is the globe key?** README says "long-press the globe to switch back," and SPEC.md requires a globe button as the single UI element — but `KeyboardViewController` renders no globe / `handleInputModeList` affordance anywhere. On devices where `needsInputModeSwitchKey` is true, Apple rejects keyboards without a switching control. Is the globe intentionally omitted (relying on the system globe on Face ID devices), and has switching been verified on a home-button device?
 9. **How does the user escape TinyKeyboard when the collapsed bar is invisible?** If the answer is "the system globe in the bottom corner," does that hold across all supported devices and iOS versions?
 
