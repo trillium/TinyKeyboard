@@ -39,6 +39,21 @@ struct ContentView: View {
                 .padding(.horizontal, 40)
                 .padding(.top, 20)
                 .accessibilityIdentifier("test-text-field")
+
+            Divider()
+                .padding(.horizontal, 40)
+
+            VStack(spacing: 4) {
+                Text("Build: \(BuildInfo.buildDate)")
+                Text("Commit: \(BuildInfo.commitSHA)")
+                Text(BuildInfo.commitMessage)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
+            }
+            .font(.caption2)
+            .foregroundColor(.secondary)
+            .padding(.horizontal, 40)
+            .accessibilityIdentifier("build-info")
         }
         .padding()
     }
