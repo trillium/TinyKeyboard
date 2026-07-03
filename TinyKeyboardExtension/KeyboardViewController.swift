@@ -1,4 +1,5 @@
 import UIKit
+import os
 
 /// Near-invisible keyboard extension.
 ///
@@ -9,8 +10,15 @@ import UIKit
 /// renders no UI of its own.
 class KeyboardViewController: UIInputViewController {
 
+    /// Lifecycle logging so the (otherwise invisible) extension is observable in
+    /// the device syslog. Stream with:
+    ///   idevicesyslog -u <udid> -m TinyKeyboard
+    /// or filter Console.app by subsystem `com.trillium.TinyKeyboard`.
+    private let log = Logger(subsystem: "com.trillium.TinyKeyboard", category: "keyboard")
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        log.notice("viewDidLoad — building 1pt transparent input view")
 
         // Replace the system inputView — the default uses UIInputViewStyle.keyboard
         // which paints opaque keyboard chrome regardless of backgroundColor = .clear.
@@ -40,5 +48,18 @@ class KeyboardViewController: UIInputViewController {
             spacer.topAnchor.constraint(equalTo: inputView.topAnchor),
             spacer.bottomAnchor.constraint(equalTo: inputView.bottomAnchor),
         ])
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // The measured height is the truth-check for "invisible": it should be
+        // ~1pt. Anything larger means the constraint lost to the system.
+        let height = Double(inputView?.bounds.height ?? -1)
+        log.notice("viewDidAppear — inputView height=\(height, format: .fixed(precision: 2))pt")
+    }
+
+    override func textDidChange(_ textInput: UITextInput?) {
+        super.textDidChange(textInput)
+        log.debug("textDidChange — focused field active")
     }
 }
