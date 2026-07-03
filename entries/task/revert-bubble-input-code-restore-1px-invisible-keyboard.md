@@ -2,10 +2,10 @@
 id: TinyKeyboard-8ti
 title: "Revert bubble input code — restore 1px invisible keyboard"
 kind: task
-status: open
+status: closed
 priority: 1
 created: 2026-07-02T22:05:57Z
-updated: 2026-07-02T22:05:57Z
+updated: 2026-07-03T03:32:29Z
 ---
 
 # Revert bubble input code — restore 1px invisible keyboard
