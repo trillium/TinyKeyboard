@@ -279,19 +279,9 @@
 				TargetAttributes = {
 					A3000001 = {
 						CreatedOnToolsVersion = 15.0;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-						};
 					};
 					A3000004 = {
 						CreatedOnToolsVersion = 15.0;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-						};
 					};
 				};
 			};
@@ -462,7 +452,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 85PWBA3B59;
+				DEVELOPMENT_TEAM = TV2582LRYN;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -484,7 +474,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 85PWBA3B59;
+				DEVELOPMENT_TEAM = TV2582LRYN;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -504,7 +494,7 @@
 				CODE_SIGN_ENTITLEMENTS = TinyKeyboard/TinyKeyboard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 85PWBA3B59;
+				DEVELOPMENT_TEAM = TV2582LRYN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -526,7 +516,7 @@
 				CODE_SIGN_ENTITLEMENTS = TinyKeyboard/TinyKeyboard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 85PWBA3B59;
+				DEVELOPMENT_TEAM = TV2582LRYN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -547,7 +537,7 @@
 				CODE_SIGN_ENTITLEMENTS = TinyKeyboardExtension/TinyKeyboardExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 85PWBA3B59;
+				DEVELOPMENT_TEAM = TV2582LRYN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TinyKeyboardExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TinyKeyboard;
@@ -566,7 +556,7 @@
 				CODE_SIGN_ENTITLEMENTS = TinyKeyboardExtension/TinyKeyboardExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 85PWBA3B59;
+				DEVELOPMENT_TEAM = TV2582LRYN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TinyKeyboardExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TinyKeyboard;
