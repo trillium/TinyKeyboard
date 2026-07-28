@@ -34,7 +34,7 @@ activates, and you have your full screen back.
   (defunct, see BUBBLE_SPEC.md banner)
 
 ## Open questions
-- **Keyboard switching affordance (globe)**: how the user switches away from
-  an invisible keyboard must be verified on devices where
-  `needsInputModeSwitchKey` is true. Apple rejects keyboards without a
-  switching control on those devices.
+- **Keyboard switching affordance (globe)**: resolved 2026-07-28 —
+  `KeyboardViewController` checks `needsInputModeSwitchKey` and adds its own
+  1pt-tall tappable globe fallback (calling `advanceToNextInputMode()`) on
+  devices where the system dock doesn't supply one.

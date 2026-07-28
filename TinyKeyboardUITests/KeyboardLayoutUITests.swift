@@ -86,4 +86,36 @@ final class KeyboardLayoutUITests: XCTestCase {
         let staticTexts = app.staticTexts
         XCTAssertGreaterThan(staticTexts.count, 0, "Some text content should remain visible")
     }
+
+    // MARK: - GIVEN/WHEN/THEN: App Store submission requirements are reachable
+
+    /// GIVEN the host app onboarding screen
+    /// WHEN the user taps "Privacy Policy"
+    /// THEN the privacy policy sheet appears with its required disclosures
+    func testPrivacyPolicySheetDisplays() throws {
+        let privacyButton = app.buttons["privacy-policy-button"]
+        XCTAssertTrue(privacyButton.waitForExistence(timeout: 3), "Privacy Policy button should exist on onboarding screen")
+
+        let onboardingScreenshot = XCTAttachment(screenshot: app.screenshot())
+        onboardingScreenshot.name = "01-onboarding-screen"
+        onboardingScreenshot.lifetime = .keepAlways
+        add(onboardingScreenshot)
+
+        privacyButton.tap()
+
+        let privacyTitle = app.navigationBars["Privacy Policy"]
+        XCTAssertTrue(privacyTitle.waitForExistence(timeout: 3), "Privacy Policy sheet should present with its navigation title")
+        XCTAssertTrue(
+            app.staticTexts["TinyKeyboard does not collect, transmit, store, or share any personal data."].exists,
+            "Privacy policy should state no data collection"
+        )
+
+        let privacyScreenshot = XCTAttachment(screenshot: app.screenshot())
+        privacyScreenshot.name = "02-privacy-policy-sheet"
+        privacyScreenshot.lifetime = .keepAlways
+        add(privacyScreenshot)
+
+        app.buttons["Done"].tap()
+        XCTAssertFalse(privacyTitle.waitForExistence(timeout: 2), "Privacy Policy sheet should dismiss after tapping Done")
+    }
 }
