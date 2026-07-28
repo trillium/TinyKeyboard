@@ -6,7 +6,7 @@
 
 **The bubble workflow is defunct — it cannot work.** A keyboard extension cannot summon a second keyboard or system dictation to type into its own text view, so the bubble can never receive input. The product target is the **original 1px invisible keyboard, with no other features**. `SPEC.md` is the canonical spec again; `BUBBLE_SPEC.md` and the openspec `bubble-input` change are retained as historical record only.
 
-Effect on the sections below: **A answered, B resolved (negatively), D moot**. E (settings panel) remains open — it is separate from the bubble. C (globe key), F (App Store scope), and H (testing) remain live. In G, the bubble-dependent questions are moot; secure-field and hardware-keyboard questions stay.
+Effect on the sections below: **A answered, B resolved (negatively), D moot**. E (settings panel) remains open — it is separate from the bubble. C (globe key) resolved 2026-07-28. F (App Store scope) and H (testing) remain live. In G, the bubble-dependent questions are moot; secure-field and hardware-keyboard questions stay.
 
 ---
 
@@ -37,12 +37,14 @@ The core contradiction, in one table:
 6. ~~**Who is the iOS voice user, concretely?**~~ — **Moot for the bubble.** (Still useful context for marketing copy, but no longer gates the product.)
 7. ~~**If the bubble can't receive text in v1, is bubble mode in scope for the App Store submission at all?**~~ — **Resolved:** no. v1 (and the product, period) is the pure get-out-of-the-way 1px keyboard. There is no bubble v2.
 
-## C. Keyboard switching — a likely App Store rejection
+## C. Keyboard switching — a likely App Store rejection ✅ Resolved 2026-07-28
 
 > 2026-07-02 note, from the restored beads (`TinyKeyboard-2h0.7`, filed 2026-03-18): iOS renders a system dock bar (~78pt — globe icon, mic icon, home-indicator safe area) *beneath* every keyboard extension, outside the extension's view hierarchy. This partially answers Q8/Q9 — the **system** dock provides the globe, so switching away works without the extension rendering one. It also bounds the product claim: the realistic minimum footprint is ~78pt of system chrome, not a true 1px — "1px" means 1px of *our* keyboard. Q8's remaining live part: verify on home-button devices where `needsInputModeSwitchKey` is true and no system dock exists.
 
-8. **Where is the globe key?** README says "long-press the globe to switch back," and SPEC.md requires a globe button as the single UI element — but `KeyboardViewController` renders no globe / `handleInputModeList` affordance anywhere. On devices where `needsInputModeSwitchKey` is true, Apple rejects keyboards without a switching control. Is the globe intentionally omitted (relying on the system globe on Face ID devices), and has switching been verified on a home-button device?
-9. **How does the user escape TinyKeyboard when the collapsed bar is invisible?** If the answer is "the system globe in the bottom corner," does that hold across all supported devices and iOS versions?
+**Resolved 2026-07-28:** `KeyboardViewController` now checks `needsInputModeSwitchKey` in `viewDidLoad` and, when true, adds its own globe button wired to `advanceToNextInputMode()` to satisfy that API requirement — see `TinyKeyboardExtension/KeyboardViewController.swift`. That button is nested in the 1pt-tall extension input view, so its own tap target is far below the 44×44pt guidance; the practical switching affordance remains the system dock's globe, which iOS renders regardless of the extension's view height.
+
+8. ~~**Where is the globe key?**~~ — **Resolved:** the system dock's globe covers Face ID devices; `KeyboardViewController` now also adds its own fallback globe button whenever `needsInputModeSwitchKey` is true (satisfying the API requirement on home-button/single-keyboard configurations), though that button's own tap target is far below Apple's 44×44pt guidance — see Q9/`SPEC.md`'s Open Questions entry.
+9. ~~**How does the user escape TinyKeyboard when the collapsed bar is invisible?**~~ — **Resolved:** the system dock's globe, which iOS renders beneath the extension regardless of its view height; the extension's own fallback globe button (added where `needsInputModeSwitchKey` requires one) satisfies the API but is not a practical tap target on its own.
 
 ## D. The dwell timer and submit behavior 🚫 Moot 2026-07-02
 
@@ -64,13 +66,13 @@ The plan: "Rotating into TinyKeyboard from another keyboard brings up a small se
 16. **Is the settings panel the existing bubble widget repurposed, a third state alongside collapsed/expanded, or a replacement for the bubble?** The state machine (`KeyboardState`) currently has exactly two states.
 17. **Which settings does it control?** Candidates visible in the code/specs: dwell duration, dwell on/off, auto-collapse after submit, double-space submit, hint-bar visibility, bubble position reset. What's the v1 list?
 18. **What counts as a "reload" that brings the panel back** — keyboard dismissed and reshown, switched away and back, host app changed, or device reboot?
-19. **Should settings live in the keyboard, the host app, or both?** The App Group (`group.com.trillium.TinyKeyboard`) already exists for position persistence, so host-app settings synced via UserDefaults is available. The host app currently shows only install instructions and a test field.
-20. **"Panel must not increase the keyboard's footprint while collapsed"** — collapsed footprint is currently 44pt, not the plan's 1px. Which number is the contract the panel must honor?
+19. **Should settings live in the keyboard, the host app, or both?** The App Group (`group.com.trillium.TinyKeyboard`) already exists for position persistence, so host-app settings synced via UserDefaults is available. The host app currently shows onboarding instructions, an enabled-status badge, a test field, and a privacy policy screen — no settings yet.
+20. **"Panel must not increase the keyboard's footprint while collapsed"** — `KeyboardViewController` constrains the extension's own input view to 1pt, matching the plan; the ~78pt globe/mic/home-indicator dock beneath it is system-owned chrome, not part of the extension's footprint. Which number is the contract the panel must honor?
 
 ## F. App Store scope and review posture
 
-21. **What is the host app's standalone utility story for Guideline 4.2?** Today it's instructions + a test field + build info. BUBBLE_SPEC conjectures bubble input itself satisfies 4.2 — but if the bubble can't receive text (§B), that argument weakens. What's the reviewer-facing answer?
-22. **Privacy policy content: can we state zero collection flatly?** `RequestsOpenAccess=false` is set (good — no network, no shared container beyond the App Group, no Full Access). Does any planned feature (WhisperFlow, settings sync, analytics) ever need Full Access, and if so is that a line we refuse to cross?
+21. **What is the host app's standalone utility story for Guideline 4.2?** Today it's onboarding instructions + a live enabled-status indicator + a test field + a privacy policy screen + build info. BUBBLE_SPEC conjectures bubble input itself satisfies 4.2 — but if the bubble can't receive text (§B), that argument weakens. What's the reviewer-facing answer?
+22. ~~**Privacy policy content: can we state zero collection flatly?**~~ — **Resolved 2026-07-28:** yes. The host app now ships an in-app privacy policy screen (`PrivacyPolicyView` in `TinyKeyboard/ContentView.swift`) stating no data collection, no keystroke logging, no clipboard access, and no network entitlements. `RequestsOpenAccess=false` remains set. No planned feature currently needs Full Access; WhisperFlow/settings-sync/analytics are still exploratory (see `Plans/app-store-readiness.md` §5) and would need to revisit this if ever pursued.
 23. **Pricing: free, paid, or freemium?** This shapes 4.2 risk (paid utilities get more scrutiny) and whether a settings panel gates features.
 24. **Device support: iPhone-only, or iPad too?** SPEC.md declares iPad a non-goal; App Store metadata must commit. (Note: on iPad, Scribble might make the bubble genuinely typeable — which cuts against excluding it.)
 25. **iOS floor: is 17+ still right** (`SPEC.md`), and what's the device-size test matrix for the "1px/44pt across all screen sizes" verification the plan asks about?
@@ -91,4 +93,4 @@ The plan: "Rotating into TinyKeyboard from another keyboard brings up a small se
 
 ---
 
-*Suggested next step: ~~answer A first (which product is v1), then B (input mechanism)~~ — done 2026-07-02. Remaining live sections: C (globe key), E (settings panel), F (App Store scope), G27/G29, H (testing).*
+*Suggested next step: ~~answer A first (which product is v1), then B (input mechanism)~~ — done 2026-07-02. ~~C (globe key)~~ — done 2026-07-28. Remaining live sections: E (settings panel), F (App Store scope, minus Q22), G27/G29, H (testing).*

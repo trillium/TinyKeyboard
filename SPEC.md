@@ -34,7 +34,12 @@ activates, and you have your full screen back.
   (defunct, see BUBBLE_SPEC.md banner)
 
 ## Open questions
-- **Keyboard switching affordance (globe)**: how the user switches away from
-  an invisible keyboard must be verified on devices where
-  `needsInputModeSwitchKey` is true. Apple rejects keyboards without a
-  switching control on those devices.
+- **Keyboard switching affordance (globe)**: resolved 2026-07-28 —
+  `KeyboardViewController` checks `needsInputModeSwitchKey` and adds its own
+  globe fallback button (calling `advanceToNextInputMode()`) to satisfy the
+  API requirement. That button is nested inside the 1pt-tall extension input
+  view, so its own tap target is far below Apple's 44×44pt guidance — it is
+  not the practical switching affordance. The actual usable control is the
+  ~78pt system dock (globe/mic/home-indicator) that iOS renders beneath every
+  keyboard extension regardless of the extension's own view height; that
+  system-owned control is what users tap to switch keyboards.

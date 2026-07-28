@@ -8,7 +8,9 @@ Switch to TinyKeyboard, the input field activates, and you have your full screen
 
 - **1pt transparent keyboard** — effectively invisible
 - **No keys** — no letters, no numbers, no suggestions bar
-- **Globe key rotation** — iOS still lets you long-press the globe to switch back to a real keyboard
+- **Globe key rotation** — the ~78pt system dock iOS renders beneath every keyboard extension (globe/mic/home-indicator) still lets you tap the globe to switch back to a real keyboard, regardless of the extension's own 1pt height; on devices where iOS also requires the extension to supply its own switching control, the extension adds a globe fallback button (calling `advanceToNextInputMode()`) to satisfy that API requirement — it's not a usable tap target on its own, since the system dock's globe is the actual switching affordance
+- **Host app onboarding** — the app walks you through enabling the keyboard in Settings, links straight to Settings, and shows a live "enabled" status once iOS has loaded it
+- **In-app privacy policy** — a Privacy Policy screen in the host app explains the keyboard collects and transmits nothing
 
 ## Why
 
