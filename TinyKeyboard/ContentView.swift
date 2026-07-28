@@ -106,7 +106,7 @@ struct ContentView: View {
     /// picker has been opened, so it's a helpful nudge, not a guarantee.
     private func refreshEnabledState() {
         isEnabled = UITextInputMode.activeInputModes.contains { mode in
-            String(describing: mode).contains("TinyKeyboardExtension")
+            String(describing: mode).contains("com.trillium.TinyKeyboard.keyboard")
         }
     }
 }
