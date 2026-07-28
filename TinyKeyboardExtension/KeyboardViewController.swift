@@ -48,7 +48,7 @@ class KeyboardViewController: UIInputViewController {
             spacer.leadingAnchor.constraint(equalTo: inputView.leadingAnchor),
             spacer.trailingAnchor.constraint(equalTo: inputView.trailingAnchor),
             spacer.topAnchor.constraint(equalTo: inputView.topAnchor),
-            spacer.bottomAnchor.constraint(equalTo: inputView.bottomAnchor),
+            spacer.bottomAnchor.constraint(equalTo: inputView.bottomAnchor)
         ])
 
         // Apple requires keyboard extensions to provide a way to switch back
@@ -74,7 +74,7 @@ class KeyboardViewController: UIInputViewController {
             globeButton.leadingAnchor.constraint(equalTo: inputView.leadingAnchor, constant: 4),
             globeButton.topAnchor.constraint(equalTo: inputView.topAnchor),
             globeButton.widthAnchor.constraint(equalToConstant: 20),
-            globeButton.heightAnchor.constraint(equalToConstant: 1),
+            globeButton.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
 

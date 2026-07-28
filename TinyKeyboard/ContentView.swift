@@ -17,7 +17,11 @@ struct ContentView: View {
                     .fontWeight(.bold)
                     .accessibilityIdentifier("instructions-label")
 
-                Text("A near-invisible keyboard for voice-first input. If you drive your iPhone with Talon Voice, Dragon, or iOS Voice Control, TinyKeyboard keeps text fields focused without the standard keyboard covering half your screen.")
+                Text(
+                    "A near-invisible keyboard for voice-first input. If you drive your iPhone with Talon Voice, "
+                        + "Dragon, or iOS Voice Control, TinyKeyboard keeps text fields focused without the "
+                        + "standard keyboard covering half your screen."
+                )
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -120,7 +124,10 @@ struct PrivacyPolicyView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     Text("TinyKeyboard does not collect, transmit, store, or share any personal data.")
 
-                    Text("The keyboard does not record keystrokes, access clipboard content, or communicate with any server. No network connections are made. No analytics are collected.")
+                    Text(
+                        "The keyboard does not record keystrokes, access clipboard content, or communicate "
+                            + "with any server. No network connections are made. No analytics are collected."
+                    )
 
                     Text("The keyboard extension runs entirely on-device and has no network entitlements.")
 
