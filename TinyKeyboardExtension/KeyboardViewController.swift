@@ -5,9 +5,11 @@ import os
 ///
 /// TinyKeyboard exists only so text fields will accept focus for voice-first
 /// users; it takes no screen space of its own. The input view is constrained to
-/// 1pt and rendered fully transparent. Keyboard switching is provided by the
-/// system dock beneath the extension (the globe key), so this controller
-/// renders no UI of its own.
+/// 1pt and rendered fully transparent. Keyboard switching is normally provided
+/// by the system dock beneath the extension (the globe key); on devices where
+/// `needsInputModeSwitchKey` is true this controller also adds its own
+/// 1pt-tall (tappable but visually invisible) globe fallback to stay
+/// compliant with Apple's switching requirement.
 class KeyboardViewController: UIInputViewController {
 
     /// Lifecycle logging so the (otherwise invisible) extension is observable in
@@ -48,6 +50,36 @@ class KeyboardViewController: UIInputViewController {
             spacer.topAnchor.constraint(equalTo: inputView.topAnchor),
             spacer.bottomAnchor.constraint(equalTo: inputView.bottomAnchor),
         ])
+
+        // Apple requires keyboard extensions to provide a way to switch back
+        // when needsInputModeSwitchKey is true (single-keyboard devices). The
+        // system dock's globe covers most configurations, but that's not
+        // guaranteed everywhere, so provide a tappable (if visually
+        // invisible, at 1pt tall) fallback to stay compliant.
+        if needsInputModeSwitchKey {
+            log.notice("needsInputModeSwitchKey is true — adding globe fallback button")
+            addGlobeButton(to: inputView)
+        }
+    }
+
+    private func addGlobeButton(to inputView: UIInputView) {
+        let globeButton = UIButton(type: .system)
+        globeButton.setImage(UIImage(systemName: "globe"), for: .normal)
+        globeButton.tintColor = .systemGray3
+        globeButton.translatesAutoresizingMaskIntoConstraints = false
+        globeButton.addTarget(self, action: #selector(globeTapped), for: .touchUpInside)
+        inputView.addSubview(globeButton)
+
+        NSLayoutConstraint.activate([
+            globeButton.leadingAnchor.constraint(equalTo: inputView.leadingAnchor, constant: 4),
+            globeButton.topAnchor.constraint(equalTo: inputView.topAnchor),
+            globeButton.widthAnchor.constraint(equalToConstant: 20),
+            globeButton.heightAnchor.constraint(equalToConstant: 1),
+        ])
+    }
+
+    @objc private func globeTapped() {
+        advanceToNextInputMode()
     }
 
     override func viewDidAppear(_ animated: Bool) {
