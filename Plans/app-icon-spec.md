@@ -7,7 +7,7 @@ No app icon exists yet. `TinyKeyboard/Assets.xcassets/AppIcon.appiconset/Content
 A small keyboard silhouette that fades into transparency, visually asserting "the keyboard that isn't there."
 
 - **Foreground**: a simplified, minimal keyboard glyph (2–3 rows of small rounded-rect keys, no legible letters — abstracted, not a literal keyboard screenshot) positioned in the lower two-thirds of the frame.
-- **Fade**: the keyboard rows fade from full opacity/color at the bottom edge to fully transparent (or blending into the background) by the top third — visually "dissolving," reinforcing invisibility.
+- **Fade**: the keyboard rows fade from full opacity/color at the bottom edge to blending fully into the background color by the top third — visually "dissolving," reinforcing invisibility, while the icon stays fully opaque (no alpha channel) throughout.
 - **Background**: solid or subtly gradient background — dark graphite or deep indigo recommended for contrast on both iOS light and dark home screens. Avoid pure white/black per Apple HIG guidance (icons should not rely on transparency; App Store icons must be fully opaque with no alpha channel).
 - **Color**: monochrome or duotone (e.g., graphite background, soft blue-white keys fading out) — keep it simple and legible at small sizes (the icon must read clearly at 60×60pt on a home screen, not just at 1024×1024).
 - **No text/wordmark** in the icon — Apple discourages text in app icons, and "TinyKeyboard" as a wordmark won't be legible at small sizes anyway.

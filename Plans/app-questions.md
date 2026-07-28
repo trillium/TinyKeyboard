@@ -41,10 +41,10 @@ The core contradiction, in one table:
 
 > 2026-07-02 note, from the restored beads (`TinyKeyboard-2h0.7`, filed 2026-03-18): iOS renders a system dock bar (~78pt — globe icon, mic icon, home-indicator safe area) *beneath* every keyboard extension, outside the extension's view hierarchy. This partially answers Q8/Q9 — the **system** dock provides the globe, so switching away works without the extension rendering one. It also bounds the product claim: the realistic minimum footprint is ~78pt of system chrome, not a true 1px — "1px" means 1px of *our* keyboard. Q8's remaining live part: verify on home-button devices where `needsInputModeSwitchKey` is true and no system dock exists.
 
-**Resolved 2026-07-28:** `KeyboardViewController` now checks `needsInputModeSwitchKey` in `viewDidLoad` and, when true, adds its own 1pt-tall (visually invisible, tappable) globe button wired to `advanceToNextInputMode()` — see `TinyKeyboardExtension/KeyboardViewController.swift`. The extension is no longer relying solely on the system dock's globe.
+**Resolved 2026-07-28:** `KeyboardViewController` now checks `needsInputModeSwitchKey` in `viewDidLoad` and, when true, adds its own globe button wired to `advanceToNextInputMode()` to satisfy that API requirement — see `TinyKeyboardExtension/KeyboardViewController.swift`. That button is nested in the 1pt-tall extension input view, so its own tap target is far below the 44×44pt guidance; the practical switching affordance remains the system dock's globe, which iOS renders regardless of the extension's view height.
 
-8. ~~**Where is the globe key?**~~ — **Resolved:** the system dock's globe covers Face ID devices; `KeyboardViewController` now also adds its own fallback globe button whenever `needsInputModeSwitchKey` is true, so home-button/single-keyboard configurations are covered too.
-9. ~~**How does the user escape TinyKeyboard when the collapsed bar is invisible?**~~ — **Resolved:** the system globe on devices where it's rendered, or the extension's own invisible-but-tappable globe fallback where `needsInputModeSwitchKey` requires one.
+8. ~~**Where is the globe key?**~~ — **Resolved:** the system dock's globe covers Face ID devices; `KeyboardViewController` now also adds its own fallback globe button whenever `needsInputModeSwitchKey` is true (satisfying the API requirement on home-button/single-keyboard configurations), though that button's own tap target is far below Apple's 44×44pt guidance — see Q9/`SPEC.md`'s Open Questions entry.
+9. ~~**How does the user escape TinyKeyboard when the collapsed bar is invisible?**~~ — **Resolved:** the system dock's globe, which iOS renders beneath the extension regardless of its view height; the extension's own fallback globe button (added where `needsInputModeSwitchKey` requires one) satisfies the API but is not a practical tap target on its own.
 
 ## D. The dwell timer and submit behavior 🚫 Moot 2026-07-02
 
@@ -67,7 +67,7 @@ The plan: "Rotating into TinyKeyboard from another keyboard brings up a small se
 17. **Which settings does it control?** Candidates visible in the code/specs: dwell duration, dwell on/off, auto-collapse after submit, double-space submit, hint-bar visibility, bubble position reset. What's the v1 list?
 18. **What counts as a "reload" that brings the panel back** — keyboard dismissed and reshown, switched away and back, host app changed, or device reboot?
 19. **Should settings live in the keyboard, the host app, or both?** The App Group (`group.com.trillium.TinyKeyboard`) already exists for position persistence, so host-app settings synced via UserDefaults is available. The host app currently shows onboarding instructions, an enabled-status badge, a test field, and a privacy policy screen — no settings yet.
-20. **"Panel must not increase the keyboard's footprint while collapsed"** — collapsed footprint is currently 44pt, not the plan's 1px. Which number is the contract the panel must honor?
+20. **"Panel must not increase the keyboard's footprint while collapsed"** — `KeyboardViewController` constrains the extension's own input view to 1pt, matching the plan; the ~78pt globe/mic/home-indicator dock beneath it is system-owned chrome, not part of the extension's footprint. Which number is the contract the panel must honor?
 
 ## F. App Store scope and review posture
 

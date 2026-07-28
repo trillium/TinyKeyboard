@@ -21,7 +21,7 @@ Trillium does not currently know how to write Swift tests. Need:
 
 ### 3. App Store Submission
 Prepare for App Store review:
-- ~~Privacy policy (keyboard extensions have elevated scrutiny)~~ — done 2026-07-28: in-app Privacy Policy screen added (`PrivacyPolicyView` in `TinyKeyboard/ContentView.swift`)
+- In-app Privacy Policy screen added (`PrivacyPolicyView` in `TinyKeyboard/ContentView.swift`) — done 2026-07-28, but this is the in-app screen only. Still open: publish a public privacy-policy URL and add it to App Store Connect metadata (required for submission; the in-app screen alone does not satisfy this).
 - ~~Globe key / `needsInputModeSwitchKey` compliance~~ — done 2026-07-28: `KeyboardViewController` adds a fallback globe button when the system requires one
 - App Store screenshots and description — drafted in `Plans/app-store-copy.md`; screenshots still need to be captured
 - App icon — not yet produced; see `Plans/app-icon-spec.md`

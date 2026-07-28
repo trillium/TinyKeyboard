@@ -47,7 +47,7 @@ struct ContentView: View {
                         UIApplication.shared.open(url)
                     }
                 } label: {
-                    Label("Open Keyboard Settings", systemImage: "gear")
+                    Label("Open App Settings", systemImage: "gear")
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
