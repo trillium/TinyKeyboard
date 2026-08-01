@@ -15,9 +15,6 @@ SCHEME="TinyKeyboard"
 BUNDLE_ID="com.trillium.TinyKeyboard"
 TITLE="TinyKeyboard"
 OTA_DIR="${OTA_DIR:-$HOME/ota}"
-BUILD_DIR="$OTA_DIR/.build"
-ARCHIVE_PATH="$BUILD_DIR/TinyKeyboard.xcarchive"
-EXPORT_PATH="$BUILD_DIR/export"
 
 cd "$PROJECT_DIR"
 
@@ -25,7 +22,16 @@ for tool in tailscale jq xcodebuild; do
   command -v "$tool" >/dev/null 2>&1 || { echo "error: required tool not found on PATH: $tool" >&2; exit 1; }
 done
 
-mkdir -p "$OTA_DIR" "$BUILD_DIR"
+mkdir -p "$OTA_DIR"
+
+# Build artifacts (the .xcarchive, export dir, dSYMs, and the ad-hoc
+# embedded.mobileprovision) must never land inside OTA_DIR: that whole
+# folder is served over the tailnet, and http.server's directory listing
+# doesn't hide dotfiles.
+BUILD_DIR="$(mktemp -d "${TMPDIR:-/tmp}/tinykeyboard-ota-build.XXXXXX")"
+trap 'rm -rf "$BUILD_DIR"' EXIT
+ARCHIVE_PATH="$BUILD_DIR/TinyKeyboard.xcarchive"
+EXPORT_PATH="$BUILD_DIR/export"
 
 # Derive this Mac's tailnet hostname instead of hardcoding a machine name.
 HOST="$(tailscale status --json | jq -r '.Self.DNSName | rtrimstr(".")')"
