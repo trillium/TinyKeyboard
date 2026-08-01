@@ -43,9 +43,21 @@ xcrun devicectl device install app \
 
 Find your device ID with `xcrun xctrace list devices`.
 
-## Free account reprovisioning
+## Remote install over Tailscale (OTA)
 
-With a free Apple Developer account, the provisioning profile expires every 7 days. The included `reinstall.sh` script rebuilds and reinstalls in one step. A LaunchAgent can automate this weekly.
+To install or refresh the app on an iPhone that isn't on the same LAN or plugged in — anywhere it has cellular or Wi-Fi and the Tailscale app connected — use the OTA (over-the-air) flow instead of `reinstall.sh`:
+
+```bash
+./ota-publish.sh
+```
+
+This builds an ad-hoc-signed `.ipa`, bumps the build number, and writes `manifest.plist` + `index.html` + the `.ipa` into `~/ota` (override with `OTA_DIR`). Serving those files and installing from the iPhone requires a one-time setup — see **`AGENTS.md`** for the full walkthrough (Tailscale admin console settings, `tailscale serve`, and the install steps).
+
+Requires a **paid** Apple Developer Program membership on team `TV2582LRYN` — ad-hoc profiles are then valid for about a year instead of the free tier's 7 days.
+
+## Free account reprovisioning (same-LAN only)
+
+With a free Apple Developer account, the provisioning profile expires every 7 days. The included `reinstall.sh` script rebuilds and reinstalls in one step over USB or same-LAN wireless debugging. A LaunchAgent can automate this weekly. This does not work from outside the LAN — for that, use the OTA flow above.
 
 ## License
 

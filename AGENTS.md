@@ -115,3 +115,32 @@ bd prime                # Refresh Beads context
 
 **Architecture in one line:** issues live in a local Dolt DB; sync uses `refs/dolt/data` on your git remote; `.beads/issues.jsonl` is a passive export. See https://github.com/gastownhall/beads/blob/main/docs/SYNC_CONCEPTS.md for details and anti-patterns.
 <!-- END BEADS CODEX SETUP -->
+
+## OTA install over Tailscale
+
+Remote install/refresh on the captain's iPhone — no USB, no same-LAN requirement — works by serving an ad-hoc-signed `.ipa` and an `itms-services` manifest over the tailnet. `./ota-publish.sh` builds and republishes those files (see the script's own comments for what it does and requires); this section is the one-time human setup that isn't scripted.
+
+Signing team `TV2582LRYN` is a **paid** Apple Developer Program membership, so ad-hoc provisioning profiles are valid ~1 year (not the free tier's 7 days).
+
+### One-time setup (human, not scripted)
+
+1. **Tailscale admin console** (https://login.tailscale.com/admin/dns and /admin/settings) — enable **MagicDNS** and **HTTPS Certificates** for this tailnet. This is what lets `tailscale serve` auto-provision a real Let's Encrypt cert for `<mac>.<tailnet>.ts.net`, so the iPhone never needs to trust a custom CA or install a `.mobileconfig` profile.
+2. **On the build Mac**, start a static file server over the `~/ota` folder (or wherever `OTA_DIR` points) and leave it running, e.g.:
+   ```bash
+   cd ~/ota && python3 -m http.server 8080
+   ```
+3. **Expose it over the tailnet**, in a separate terminal, and leave it backgrounded:
+   ```bash
+   tailscale serve --bg --https=443 http://127.0.0.1:8080
+   ```
+   This publishes to the tailnet only (`tailscale serve`, not `Funnel`) — nothing is reachable from the public internet.
+4. **On the iPhone**: make sure the Tailscale app is installed and connected (works over cellular or any Wi-Fi, not just home LAN), then open `https://<mac>.<tailnet>.ts.net/` in **Safari** (not an in-app browser — `itms-services://` links aren't honored there) and tap the install link. iOS installs directly from the manifest; no App Store, no TestFlight.
+
+After that one-time setup, day-to-day updates are just `./ota-publish.sh` on the build Mac followed by re-opening the same URL on the phone.
+
+## Maintaining this file
+
+Keep this file for knowledge useful to almost every future agent session in this project.
+Do not repeat what the codebase already shows; point to the authoritative file or command instead.
+Prefer rewriting or pruning existing entries over appending new ones.
+When updating this file, preserve this bar for all agents and keep entries concise.
