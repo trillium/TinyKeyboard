@@ -129,14 +129,36 @@ Signing team `TV2582LRYN` is a **paid** Apple Developer Program membership, so a
    ```bash
    cd ~/ota && python3 -m http.server 8080
    ```
-3. **Expose it over the tailnet**, in a separate terminal, and leave it backgrounded:
+3. **Expose it over the tailnet**, in a separate terminal, and leave it backgrounded. Pick the mount that fits what this Mac is already serving (see "Where to mount it" below):
    ```bash
    tailscale serve --bg --https=443 http://127.0.0.1:8080
    ```
    This publishes to the tailnet only (`tailscale serve`, not `Funnel`) — nothing is reachable from the public internet.
-4. **On the iPhone**: make sure the Tailscale app is installed and connected (works over cellular or any Wi-Fi, not just home LAN), then open `https://<mac>.<tailnet>.ts.net/` in **Safari** (not an in-app browser — `itms-services://` links aren't honored there) and tap the install link. iOS installs directly from the manifest; no App Store, no TestFlight.
+   **Warning:** `--https=443` with no `--set-path` claims the HTTPS root `/` and **replaces any existing root mapping** on this machine. Run `tailscale serve status` first; if `/` is already proxying something, use one of the alternatives below instead.
+4. **On the iPhone**: make sure the Tailscale app is installed and connected (works over cellular or any Wi-Fi, not just home LAN), then open the install page URL in **Safari** (not an in-app browser — `itms-services://` links aren't honored there) and tap the install link. `ota-publish.sh` prints the exact URL when it finishes. iOS installs directly from the manifest; no App Store, no TestFlight.
 
-After that one-time setup, day-to-day updates are just `./ota-publish.sh` on the build Mac followed by re-opening the same URL on the phone.
+### Where to mount it — `OTA_BASE_URL`
+
+`ota-publish.sh` bakes an absolute base URL into `manifest.plist` and the `itms-services://` install link, so the published URLs must match wherever `tailscale serve` actually exposes the folder.
+
+- **Default (root is free):** `OTA_BASE_URL` unset → the script derives `https://<mac>.<tailnet>.ts.net` from `tailscale status --json`. Nothing to set.
+- **Root is already taken** (the case on the captain's Mac, where `/` proxies another service): do **not** re-serve at `--https=443` root — it would clobber that mapping. Set `OTA_BASE_URL` instead. It must start with `https://`; iOS refuses `itms-services` manifests over plain HTTP, and the script rejects a non-HTTPS base rather than shipping an install page that fails silently on the phone. A trailing slash is stripped automatically. With `OTA_BASE_URL` set, the `tailscale` CLI isn't needed at publish time (`jq` and `xcodebuild` still are).
+
+  **Option A — alternate HTTPS port** (simplest; makes no assumptions about path rewriting):
+  ```bash
+  tailscale serve --bg --https=8443 http://127.0.0.1:8080
+  OTA_BASE_URL=https://<mac>.<tailnet>.ts.net:8443 ./ota-publish.sh
+  ```
+  Tradeoff: a non-standard port in the URL, and each extra HTTPS port is its own listener.
+
+  **Option B — subpath mount on the existing 443 listener:**
+  ```bash
+  tailscale serve --bg --https=443 --set-path=/ota http://127.0.0.1:8080
+  OTA_BASE_URL=https://<mac>.<tailnet>.ts.net/ota ./ota-publish.sh
+  ```
+  Tradeoff: `tailscale serve --help` documents `--set-path` only as "appends the specified path to the base URL for accessing the underlying service" and does not state whether the `/ota` prefix is stripped before proxying to `127.0.0.1:8080`, so verify with `curl https://<mac>.<tailnet>.ts.net/ota/manifest.plist` before trusting it from the phone — if the prefix is passed through, serve a `~/ota/ota/` layout or a rewriting server instead. Keeps everything on 443 alongside the existing root mapping.
+
+After that one-time setup, day-to-day updates are just `./ota-publish.sh` (with the same `OTA_BASE_URL`, if you needed one) on the build Mac followed by re-opening the same URL on the phone.
 
 ## Maintaining this file
 

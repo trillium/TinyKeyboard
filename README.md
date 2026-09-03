@@ -51,7 +51,7 @@ To install or refresh the app on an iPhone that isn't on the same LAN or plugged
 ./ota-publish.sh
 ```
 
-This builds an ad-hoc-signed `.ipa`, bumps the build number, and writes `manifest.plist` + `index.html` + the `.ipa` into `~/ota` (override with `OTA_DIR`). Serving those files and installing from the iPhone requires a one-time setup — see **`AGENTS.md`** for the full walkthrough (Tailscale admin console settings, `tailscale serve`, and the install steps).
+This builds an ad-hoc-signed `.ipa`, bumps the build number, and writes `manifest.plist` + `index.html` + the `.ipa` into `~/ota` (override with `OTA_DIR`). Serving those files and installing from the iPhone requires a one-time setup — see **`AGENTS.md`** for the full walkthrough (Tailscale admin console settings, `tailscale serve`, where to mount it via `OTA_BASE_URL`, and the install steps).
 
 Requires a **paid** Apple Developer Program membership on team `TV2582LRYN` — ad-hoc profiles are then valid for about a year instead of the free tier's 7 days.
 
