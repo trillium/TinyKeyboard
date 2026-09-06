@@ -1,7 +1,7 @@
 # TinyKeyboard — App Icon Spec
 
 ## Status
-No app icon exists yet. `TinyKeyboard/Assets.xcassets/AppIcon.appiconset/Contents.json` declares only the single universal 1024×1024 slot required by the current asset catalog format (Xcode 14+ single-size icon), but the PNG itself (`filename` entry) is missing. This needs a 1024×1024 PNG added before submission — App Store Connect will reject a build without one.
+Done 2026-09-06. `TinyKeyboard/Assets.xcassets/AppIcon.appiconset/AppIcon.png` is a 1024×1024 sRGB PNG with no alpha. `Contents.json` sets `images[0].filename` to `AppIcon.png`. Regenerator: `scripts/generate-app-icon.py`.
 
 ## Concept
 A small keyboard silhouette that fades into transparency, visually asserting "the keyboard that isn't there."
