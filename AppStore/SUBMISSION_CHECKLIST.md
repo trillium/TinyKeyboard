@@ -26,14 +26,12 @@ Prepared 2026-09-06 on branch `fm/tiny-appstore-prep`. **Do not upload to App St
 
 ## Needs a human decision (not done here)
 
-1. **GitHub Pages** — enable via the click path in `PRIVACY_POLICY_HOSTING.md`. Until then there is no public privacy-policy URL for App Store Connect.
-2. **App Store Connect record** — create the app (name TinyKeyboard, bundle `com.trillium.TinyKeyboard`, SKU, primary locale). Do not upload a build until the record exists.
-3. **iPad scope** — `SPEC.md` says iPad is a non-goal, but both targets are `TARGETED_DEVICE_FAMILY = 1,2`. Either keep iPad (screenshots already captured) or change family to `1` (iPhone only) before the first archive you submit. Do not mix that with a signing/team edit.
+1. **App Store Connect record** — create the app (name TinyKeyboard, bundle `com.trillium.TinyKeyboard`, SKU, primary locale). Do not upload a build until the record exists.
+2. **iPad scope** — `SPEC.md` says iPad is a non-goal, but both targets are `TARGETED_DEVICE_FAMILY = 1,2`. Either keep iPad (screenshots already captured) or change family to `1` (iPhone only) before the first archive you submit. Do not mix that with a signing/team edit.
 
 ## Still missing (cannot finish without the items above)
 
-- Public privacy-policy URL (blocked on Pages)
-- App Store Connect app record, privacy nutrition labels ("Data Not Collected"), and the reviewer notes field paste
+- App Store Connect app record, privacy nutrition labels ("Data Not Collected"), and the reviewer notes field paste (Privacy Policy URL: `https://trillium.github.io/TinyKeyboard/privacy-policy.html`)
 - Archive + upload of a Release build (explicitly out of scope for this prep)
 - Caption overlays ("Your screen stays yours.") — copy mentions a caption; the files here are raw simulator shots, which App Store Connect accepts
 - Host-app "Not enabled yet" badge stays orange even after TinyKeyboard is the active keyboard (`UITextInputMode.activeInputModes` lag / identifier mismatch). Cosmetic for screenshots; not a submission blocker
