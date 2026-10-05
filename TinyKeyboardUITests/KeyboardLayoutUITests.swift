@@ -147,9 +147,7 @@ final class KeyboardLayoutUITests: XCTestCase {
     /// Focus the test field and hold so a Mac-side driver can toggle the software keyboard.
     func testHoldTextFieldFocus() throws {
         try Self.requireCaptureFlag()
-        let marker = URL(
-            fileURLWithPath: "/Users/trilliumsmith/code/TinyKeyboard/AppStore/screenshots/FOCUS_READY"
-        )
+        let marker = Self.appStoreScreenshotsURL.appendingPathComponent("FOCUS_READY")
         try? FileManager.default.removeItem(at: marker)
         let textField = app.textFields["test-text-field"]
         XCTAssertTrue(textField.waitForExistence(timeout: 5))
@@ -167,28 +165,29 @@ final class KeyboardLayoutUITests: XCTestCase {
         try Self.captureKeyboardsSettings(to: outDir)
     }
 
+    private static let appStoreScreenshotsURL: URL = {
+        let repoRoot = URL(fileURLWithPath: #filePath)
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+        return repoRoot.appendingPathComponent("AppStore/screenshots", isDirectory: true)
+    }()
+
     private static func requireCaptureFlag() throws {
-        let flag = URL(
-            fileURLWithPath: "/Users/trilliumsmith/code/TinyKeyboard/AppStore/screenshots/CAPTURE"
-        )
+        let flag = Self.appStoreScreenshotsURL.appendingPathComponent("CAPTURE")
         if !FileManager.default.fileExists(atPath: flag.path) {
             throw XCTSkip("App Store capture tests are opt-in; touch AppStore/screenshots/CAPTURE")
         }
     }
 
     private static func screenshotOutputDirectory() -> URL {
-        let pointer = URL(
-            fileURLWithPath: "/Users/trilliumsmith/code/TinyKeyboard/AppStore/screenshots/CURRENT_DIR.txt"
-        )
+        let pointer = Self.appStoreScreenshotsURL.appendingPathComponent("CURRENT_DIR.txt")
         if let path = try? String(contentsOf: pointer, encoding: .utf8) {
             let trimmed = path.trimmingCharacters(in: .whitespacesAndNewlines)
             if !trimmed.isEmpty {
                 return URL(fileURLWithPath: trimmed)
             }
         }
-        return URL(
-            fileURLWithPath: "/Users/trilliumsmith/code/TinyKeyboard/AppStore/screenshots/iphone-6.9"
-        )
+        return Self.appStoreScreenshotsURL.appendingPathComponent("iphone-6.9", isDirectory: true)
     }
 
     private static func writeScreenshot(named name: String, to directory: URL) throws {
@@ -230,10 +229,10 @@ final class KeyboardLayoutUITests: XCTestCase {
         let tiny = settings.staticTexts["TinyKeyboard"].firstMatch
         if tiny.waitForExistence(timeout: 3) {
             tiny.tap()
+            // Confirm allow-full-access / add sheets if they appear.
+            tapLabel("Allow")
+            tapLabel("Add")
+            try writeScreenshot(named: "04-settings-keyboards.png", to: directory)
         }
-        // Confirm allow-full-access / add sheets if they appear.
-        tapLabel("Allow")
-        tapLabel("Add")
-        try writeScreenshot(named: "04-settings-keyboards.png", to: directory)
     }
 }

@@ -13,7 +13,7 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFilter, ImageCms
+from PIL import Image, ImageDraw, ImageFilter, ImageChops
 
 SIZE = 1024
 SUPERSAMPLE = 2
@@ -118,8 +118,6 @@ def keyboard_layer(size: int) -> Image.Image:
 
 def fade_mask(size: int) -> Image.Image:
     """Vertical dissolve: opaque at the bottom, gone by the top third."""
-    mask = Image.new("L", (size, 1), 0)
-    pix = mask.load()
     full = FADE_FULL_Y * (size - 1)
     gone = FADE_GONE_Y * (size - 1)
     # Build a 1-pixel-wide gradient and resize — smoother than per-row Python.
@@ -139,16 +137,6 @@ def fade_mask(size: int) -> Image.Image:
     return col.resize((size, size), Image.Resampling.BILINEAR)
 
 
-def flatten_srgb(img: Image.Image, profile_path: Path) -> Image.Image:
-    rgb = img.convert("RGB")
-    srgb = ImageCms.getOpenProfile(str(profile_path))
-    # Assign sRGB without a transform (pixels are already authored in sRGB).
-    rgb_with_profile = ImageCms.profileToProfile(
-        rgb, srgb, srgb, outputMode="RGB", renderingIntent=0, inPlace=False
-    )
-    return rgb_with_profile if rgb_with_profile is not None else rgb
-
-
 def main() -> None:
     repo = Path(__file__).resolve().parents[1]
     out_dir = repo / "TinyKeyboard" / "Assets.xcassets" / "AppIcon.appiconset"
@@ -162,7 +150,7 @@ def main() -> None:
     mask = fade_mask(CANVAS)
     # Apply dissolve to the keyboard's own alpha.
     key_a = keys.split()[-1]
-    faded_a = ImageChops_multiply(key_a, mask)
+    faded_a = ImageChops.multiply(key_a, mask)
     keys.putalpha(faded_a)
     composed = bg.convert("RGBA")
     composed.alpha_composite(keys)
@@ -183,12 +171,6 @@ def main() -> None:
     print(f"wrote {out_path}")
     print(f"  size={saved.size} mode={saved.mode} extrema={extrema}")
     print(f"  bytes={out_path.stat().st_size}")
-
-
-def ImageChops_multiply(a: Image.Image, b: Image.Image) -> Image.Image:
-    from PIL import ImageChops
-
-    return ImageChops.multiply(a, b)
 
 
 if __name__ == "__main__":

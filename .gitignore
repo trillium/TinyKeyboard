@@ -27,3 +27,10 @@ AppStore/screenshots/CURRENT_DIR.txt
 AppStore/screenshots/FOCUS_READY
 AppStore/screenshots/CAPTURE
 AppStore/screenshots/settings-ax.txt
+
+# Python bytecode cache
+__pycache__/
+*.py[cod]
+
+# Agent harness plumbing
+.fm-hooks/
