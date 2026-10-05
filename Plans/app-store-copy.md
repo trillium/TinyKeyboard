@@ -35,16 +35,20 @@ TinyKeyboard is 1 point tall and fully transparent. Keyboard switching is provid
 
 To test: add TinyKeyboard in Settings → General → Keyboard → Keyboards, then tap any text field and switch to TinyKeyboard using the globe key. The keyboard will be invisible — this is the intended behavior.
 
-## Screenshots needed
+## Screenshots
 
-Device: iPhone 16 Pro Max (6.9"), required App Store screenshot group — 1320×2868px portrait.
+Captured 2026-09-06 — see `AppStore/README.md`.
 
-1. **Before**: A messaging or notes app with the standard iOS keyboard open, covering roughly half the screen, text field visible near the top edge of the keyboard.
-2. **After**: The same app/text field with TinyKeyboard active — full screen visible, text field focused (cursor blinking), no on-screen keyboard chrome. Caption: "Your screen stays yours."
-3. **Host app onboarding screen**: showing the setup instructions and "Open App Settings" button, to make the setup flow legible to reviewers and prospective users.
-4. Optional: a shot of Settings → Keyboards showing TinyKeyboard listed alongside the default keyboard, to illustrate the enable step.
+**iPhone 6.9"** (required) — 1320×2868px portrait, iPhone 16 Pro Max simulator, in `AppStore/screenshots/iphone-6.9/`.
 
-Capture with the iOS Simulator (`xcrun simctl io booted screenshot`) — no paid Apple Developer enrollment required. Capturing on a physical device instead requires a paid Apple Developer Program enrollment (for on-device installation/archiving) and the corresponding device/archive setup.
+1. **Before**: host app with the standard iOS keyboard open, covering roughly half the screen.
+2. **After**: the same text field with TinyKeyboard active — full screen visible, cursor blinking, only the system globe/mic dock. (Copy caption if you add marketing frames later: "Your screen stays yours.")
+3. **Host app onboarding screen**: setup instructions and "Open App Settings".
+4. **Settings → Keyboards**: TinyKeyboard listed alongside English (US) and Emoji.
+
+**iPad 13"** (required while the app runs on iPad) — 2064×2752px portrait, iPad Pro 13-inch (M5) simulator, in `AppStore/screenshots/ipad-13/`. Same four states.
+
+Raw simulator PNGs, RGB, no alpha. App Store Connect accepts these without device frames.
 
 ## Pricing
 Free (no in-app purchases, no data collection — see privacy policy).
