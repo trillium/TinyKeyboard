@@ -32,8 +32,9 @@ Opt-in UI tests in `TinyKeyboardUITests` (skipped unless `AppStore/screenshots/C
 
 1. `touch AppStore/screenshots/CAPTURE`
 2. Write the output dir into `AppStore/screenshots/CURRENT_DIR.txt`
-3. `xcodebuild test -only-testing:TinyKeyboardUITests/KeyboardLayoutUITests/testCaptureSettingsKeyboards`
-4. For keyboard states: run `testHoldTextFieldFocus`, then Simulator **I/O → Keyboard → Toggle Software Keyboard**, then `xcrun simctl io <udid> screenshot`
+3. `xcodebuild test -only-testing:TinyKeyboardUITests/KeyboardLayoutUITests/testCaptureAppStoreOnboarding` (writes `03-onboarding.png`)
+4. `xcodebuild test -only-testing:TinyKeyboardUITests/KeyboardLayoutUITests/testCaptureSettingsKeyboards`
+5. For keyboard states: run `testHoldTextFieldFocus`, then Simulator **I/O → Keyboard → Toggle Software Keyboard**, then `xcrun simctl io <udid> screenshot`
 
 XCUITest reconnects the hardware keyboard, which is why the software keyboard is toggled from the Mac side rather than inside the test.
 

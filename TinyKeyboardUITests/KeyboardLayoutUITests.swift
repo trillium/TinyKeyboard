@@ -205,10 +205,10 @@ final class KeyboardLayoutUITests: XCTestCase {
             let candidates: [XCUIElement] = [
                 settings.staticTexts[label].firstMatch,
                 settings.buttons[label].firstMatch,
-                settings.cells[label].firstMatch,
+                settings.cells[label].firstMatch
             ]
-            for el in candidates where el.waitForExistence(timeout: 1.5) {
-                el.tap()
+            for element in candidates where element.waitForExistence(timeout: 1.5) {
+                element.tap()
                 return
             }
         }

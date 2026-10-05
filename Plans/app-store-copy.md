@@ -35,7 +35,7 @@ TinyKeyboard is 1 point tall and fully transparent. Keyboard switching is provid
 
 To test: add TinyKeyboard in Settings → General → Keyboard → Keyboards, then tap any text field and switch to TinyKeyboard using the globe key. The keyboard will be invisible — this is the intended behavior.
 
-## Screenshots needed
+## Screenshots
 
 Captured 2026-09-06 — see `AppStore/README.md`.
 

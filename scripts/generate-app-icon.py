@@ -84,7 +84,9 @@ def keyboard_layer(size: int) -> Image.Image:
     row2_y = row3_y - gap - key_h
     row1_y = row2_y - gap - key_h
 
-    def equal_row(n: int, y: int, inset: float = 0.0) -> list[tuple[float, float, float, float]]:
+    def equal_row(
+        n: int, y: int, inset: float = 0.0
+    ) -> list[tuple[float, float, float, float]]:
         inner_left = left + inset
         inner_right = right - inset
         usable = inner_right - inner_left
@@ -106,7 +108,12 @@ def keyboard_layer(size: int) -> Image.Image:
     space_gap = gap
     r3_left = (left, row3_y, left + side, row3_y + key_h)
     r3_right = (right - side, row3_y, right, row3_y + key_h)
-    r3_space = (left + side + space_gap, row3_y, right - side - space_gap, row3_y + key_h)
+    r3_space = (
+        left + side + space_gap,
+        row3_y,
+        right - side - space_gap,
+        row3_y + key_h,
+    )
     row3 = [r3_left, r3_space, r3_right]
 
     fill = (*KEY_FILL, 255)

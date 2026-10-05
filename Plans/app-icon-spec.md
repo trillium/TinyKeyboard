@@ -18,4 +18,4 @@ A small keyboard silhouette that fades into transparency, visually asserting "th
 - Export flat (no layered PSD) into `TinyKeyboard/Assets.xcassets/AppIcon.appiconset/`, and add the filename to `Contents.json`'s `images[0].filename` key.
 
 ## Production note
-This spec is written so the actual artwork can be produced with design tooling (Figma, Sketch, or an image generation tool) outside this session — no rendering/design tool was available here to produce the PNG directly.
+Generated programmatically by `scripts/generate-app-icon.py` (Pillow), which draws the keyboard silhouette and dissolve fade per the spec above. Regenerate with `python3 scripts/generate-app-icon.py`.
