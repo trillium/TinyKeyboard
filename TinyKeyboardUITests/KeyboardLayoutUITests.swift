@@ -232,7 +232,7 @@ final class KeyboardLayoutUITests: XCTestCase {
             // Confirm allow-full-access / add sheets if they appear.
             tapLabel("Allow")
             tapLabel("Add")
-            try writeScreenshot(named: "04-settings-keyboards.png", to: directory)
+            try writeScreenshot(named: "05-settings-keyboards-post-add.png", to: directory)
         }
     }
 }
