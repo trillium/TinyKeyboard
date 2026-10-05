@@ -12,7 +12,6 @@ Device: iPhone 16 Pro Max simulator.
 | `screenshots/iphone-6.9/02-after-tinykeyboard.png` | Same field focused (cursor), TinyKeyboard active — only the system globe/mic dock |
 | `screenshots/iphone-6.9/03-onboarding.png` | Host app onboarding (setup steps + Open App Settings) |
 | `screenshots/iphone-6.9/04-settings-keyboards.png` | Settings → Keyboards list with TinyKeyboard enabled |
-| `screenshots/iphone-6.9/05-settings-keyboards-post-add.png` | Settings → Keyboards after adding TinyKeyboard (post-add confirmation) |
 
 ## iPad 13" (required while `TARGETED_DEVICE_FAMILY = 1,2`) — 2064×2752
 
@@ -24,7 +23,6 @@ Device: iPad Pro 13-inch (M5) simulator.
 | `screenshots/ipad-13/02-after-tinykeyboard.png` | Same field focused, TinyKeyboard active (no keyboard chrome) |
 | `screenshots/ipad-13/03-onboarding.png` | Host app onboarding |
 | `screenshots/ipad-13/04-settings-keyboards.png` | Settings → Keyboards with TinyKeyboard listed |
-| `screenshots/ipad-13/05-settings-keyboards-post-add.png` | Settings → Keyboards after adding TinyKeyboard (post-add confirmation) |
 
 `SPEC.md` still lists iPad as a non-goal. The binary currently ships for iPhone and iPad, so App Store Connect will require the 13" set unless device family is changed to iPhone-only.
 
@@ -38,3 +36,5 @@ Opt-in UI tests in `TinyKeyboardUITests` (skipped unless `AppStore/screenshots/C
 4. For keyboard states: run `testHoldTextFieldFocus`, then Simulator **I/O → Keyboard → Toggle Software Keyboard**, then `xcrun simctl io <udid> screenshot`
 
 XCUITest reconnects the hardware keyboard, which is why the software keyboard is toggled from the Mac side rather than inside the test.
+
+`testCaptureSettingsKeyboards` also writes a `05-settings-keyboards-post-add.png` (Settings after adding TinyKeyboard) when the Add New Keyboard list is reachable; it is capture output, not a delivered asset.
