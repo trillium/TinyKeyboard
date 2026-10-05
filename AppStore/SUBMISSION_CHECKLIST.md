@@ -22,7 +22,7 @@ Prepared 2026-09-06 on branch `fm/tiny-appstore-prep`. **Do not upload to App St
   - Keyboard extension: `NSExtensionPointIdentifier = com.apple.keyboard-service`
   - `RequestsOpenAccess = false` — no Full Access prompt, matches the zero-collection privacy claim
 - **Privacy policy file** — `privacy-policy.html` at repo root (text matches the in-app screen).
-- **Signing** — not touched. Team `85PWBA3B59`, bundle `com.trillium.TinyKeyboard` / `.keyboard`.
+- **Signing** — not touched. Team `TV2582LRYN`, bundle `com.trillium.TinyKeyboard` / `.keyboard`.
 
 ## Needs a human decision (not done here)
 
