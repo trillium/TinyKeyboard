@@ -13,7 +13,7 @@ Device: iPhone 16 Pro Max simulator.
 | `screenshots/iphone-6.9/03-onboarding.png` | Host app onboarding (setup steps + Open App Settings) |
 | `screenshots/iphone-6.9/04-settings-keyboards.png` | Settings → Keyboards list with TinyKeyboard enabled |
 
-## iPad 13" (required while `TARGETED_DEVICE_FAMILY = 1,2`) — 2064×2752
+## iPad 13" — UNUSED since 2026-10-16 (binary is iPhone-only) — 2064×2752
 
 Device: iPad Pro 13-inch (M5) simulator.
 
@@ -24,7 +24,7 @@ Device: iPad Pro 13-inch (M5) simulator.
 | `screenshots/ipad-13/03-onboarding.png` | Host app onboarding |
 | `screenshots/ipad-13/04-settings-keyboards.png` | Settings → Keyboards with TinyKeyboard listed |
 
-`SPEC.md` still lists iPad as a non-goal. The binary currently ships for iPhone and iPad, so App Store Connect will require the 13" set unless device family is changed to iPhone-only.
+The binary is iPhone-only (`TARGETED_DEVICE_FAMILY = 1`), so App Store Connect asks for no iPad set; these files are kept only for history.
 
 ## Recapture
 

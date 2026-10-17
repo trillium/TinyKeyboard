@@ -8,6 +8,8 @@ Voice-first invisible keyboard
 
 ## Description
 
+> Superseded for 1.0 by `Plans/submission/SUBMISSION_PACKAGE.md` (adds the control strip, privacy copy, keyword budget). Kept for history.
+
 TinyKeyboard is a keyboard extension with a single purpose: get out of your way.
 
 If you use voice input — Talon Voice, Dragon, iOS dictation, or any other voice control — you know the frustration: every time you tap a text field, the iOS keyboard slides up and takes half your screen.
@@ -46,7 +48,7 @@ Captured 2026-09-06 — see `AppStore/README.md`.
 3. **Host app onboarding screen**: setup instructions and "Open App Settings".
 4. **Settings → Keyboards**: TinyKeyboard listed alongside English (US) and Emoji.
 
-**iPad 13"** (required while the app runs on iPad) — 2064×2752px portrait, iPad Pro 13-inch (M5) simulator, in `AppStore/screenshots/ipad-13/`. Same four states.
+**iPad**: not applicable. The binary is iPhone-only as of 2026-10-16 (`TARGETED_DEVICE_FAMILY = 1`); the old `AppStore/screenshots/ipad-13/` files are unused.
 
 Raw simulator PNGs, RGB, no alpha. App Store Connect accepts these without device frames.
 
