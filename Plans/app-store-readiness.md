@@ -30,7 +30,7 @@ Prepare for App Store review:
 
 - In-app Privacy Policy screen added (`PrivacyPolicyView` in `TinyKeyboard/ContentView.swift`) — done 2026-07-28. Static counterpart `privacy-policy.html` added 2026-08-01. GitHub Pages enabled 2026-09-06 from `main` / `(root)`: https://trillium.github.io/TinyKeyboard/privacy-policy.html
 - ~~Globe key / `needsInputModeSwitchKey` compliance~~ — done 2026-07-28: `KeyboardViewController` adds a fallback globe button when the system requires one
-- ~~App Store screenshots and description~~ — copy in `Plans/app-store-copy.md`; screenshots captured 2026-09-06 in `AppStore/screenshots/` (iPhone 6.9" 1320×2868 and iPad 13" 2064×2752)
+- ~~App Store screenshots and description~~ — copy in `Plans/app-store-copy.md`; screenshots captured 2026-09-06 in `AppStore/screenshots/` (iPhone 6.9" 1320×2868; the iPad 13" set is unused since the binary went iPhone-only 2026-10-16)
 - ~~App icon~~ — 1024×1024 opaque PNG in `AppIcon.appiconset/` (2026-09-06); see `Plans/app-icon-spec.md`
 - Reviewer note: the keyboard looks invisible by design — explain the use case (drafted in `Plans/app-store-copy.md`'s App Review Note; verified against code 2026-09-06)
 - ~~Entitlements and capabilities review~~ — both `.entitlements` files are empty; `RequestsOpenAccess=false`; no network / App Group / associated domains. See `AppStore/SUBMISSION_CHECKLIST.md`.
