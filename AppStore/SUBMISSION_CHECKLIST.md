@@ -1,5 +1,7 @@
 # App Store submission checklist
 
+> **Superseded 2026-10-16** by `Plans/submission/` (`SUBMISSION_PACKAGE.md`, `CAPTAIN_CHECKLIST.md`, `PLAN_TO_2026-10-20.md`). The binary is now iPhone-only, so the iPad items below no longer apply. Kept for history.
+
 Prepared 2026-09-06 on branch `fm/tiny-appstore-prep`. **Do not upload to App Store Connect** — the app record does not exist yet.
 
 ## Ready

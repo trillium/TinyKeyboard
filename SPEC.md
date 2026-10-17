@@ -14,8 +14,10 @@ activates, and you have your full screen back.
   implementation was a 1pt transparent keyboard with no visible UI (see
   README.md); that is the target.
 - **No keys**: No letter keys, no number keys, no suggestions bar
-- **No bubble/expanded mode**: The keyboard has exactly one state — invisible
-- **No settings panel** beyond whatever App Store review demands
+- **No bubble/expanded composition mode**: collapsed, the keyboard is invisible (1pt)
+- **Settings panel**: a small control panel (52pt) shows once per controller load
+  when rotating into the keyboard, has a collapse button, and collapses back to
+  1pt with no added footprint (`SettingsPanelView`, `PanelState`)
 - **Target device**: iPhone (iOS 17+)
 - **App Store submission is the goal** — active plan at
   `Plans/app-store-readiness.md`

@@ -61,13 +61,14 @@ This protocol applies when ending a Beads implementation workflow. It is subordi
 
 ## Build & Test
 
-_Add your build and test commands here_
-
 ```bash
-# Example:
-# npm install
-# npm test
+scripts/run-tests.sh            # unit + UI tests on a simulator (~2 min); `unit` for unit only
+scripts/archive-release.sh      # Release .xcarchive (never uploads); output build/archive/
 ```
+
+How the tests work and what a real iPhone must still check: `TESTING.md`.
+Submission material and captain-only steps: `Plans/submission/`.
+The keyboard extension is iPhone-only and must keep `RequestsOpenAccess = false` (a unit test enforces it).
 
 ## Architecture Overview
 
