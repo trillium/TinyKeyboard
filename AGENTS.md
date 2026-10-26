@@ -160,6 +160,17 @@ Signing team `TV2582LRYN` is a **paid** Apple Developer Program membership, so a
 
 After that one-time setup, day-to-day updates are just `./ota-publish.sh` (with the same `OTA_BASE_URL`, if you needed one) on the build Mac followed by re-opening the same URL on the phone.
 
+## Build & Test
+
+```bash
+scripts/run-tests.sh            # unit + UI tests on a simulator (~2 min); `unit` for unit only
+scripts/archive-release.sh      # Release .xcarchive (never uploads); output build/archive/
+```
+
+How the tests work and what a real iPhone must still check: `TESTING.md`.
+Submission material and captain-only steps: `Plans/submission/`.
+The keyboard extension is iPhone-only and must keep `RequestsOpenAccess = false` (a unit test enforces it).
+
 ## Maintaining this file
 
 Keep this file for knowledge useful to almost every future agent session in this project.

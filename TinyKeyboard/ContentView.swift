@@ -96,18 +96,21 @@ struct ContentView: View {
 
     private var statusBadge: some View {
         Label(
-            isEnabled ? "Enabled ✓" : "Not enabled yet",
-            systemImage: isEnabled ? "checkmark.circle.fill" : "exclamationmark.circle"
+            isEnabled ? "Enabled ✓" : "Not detected yet",
+            systemImage: isEnabled ? "checkmark.circle.fill" : "info.circle"
         )
         .font(.subheadline)
-        .foregroundColor(isEnabled ? .green : .orange)
+        .foregroundColor(isEnabled ? .green : .secondary)
         .accessibilityIdentifier("keyboard-status")
     }
 
     /// Best-effort check for whether TinyKeyboard is enabled: its
     /// identifier shows up in the active input modes once iOS has loaded it
     /// at least once. This can lag behind Settings state until the keyboard
-    /// picker has been opened, so it's a helpful nudge, not a guarantee.
+    /// picker has been opened, so it's a helpful nudge, not a guarantee. The
+    /// not-enabled state is therefore worded "Not detected yet" and kept
+    /// neutral rather than warning-orange: iOS can report a working keyboard
+    /// as absent here.
     private func refreshEnabledState() {
         isEnabled = UITextInputMode.activeInputModes.contains { mode in
             String(describing: mode).contains("com.trillium.TinyKeyboard.keyboard")

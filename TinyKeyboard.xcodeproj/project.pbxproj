@@ -8,17 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		05918366F8EE262FFDF5FE52 /* KeyboardLayoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B73CC602E3FB6C8F4BBEA92 /* KeyboardLayoutUITests.swift */; };
+		4349F6A8588EA4F4767271EA /* ExtensionManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108633859A7B3F0F67403B91 /* ExtensionManifestTests.swift */; };
 		4827618B676BF4E8ACF10335 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5197F52B0414A3AA5D01C5F3 /* XCTest.framework */; };
 		586533C1792B4B7FE26A829F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F68EE596B0E3CDC45E268BDB /* Foundation.framework */; };
 		662B38515227AF10E628AAA9 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000003 /* KeyboardViewController.swift */; };
+		6E162479CDA379EE8BCCEB75 /* KeyboardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6FE0CCDFB06A666A58485F /* KeyboardViewControllerTests.swift */; };
+		743EAEF2F45A73D60D235955 /* PanelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1558B3F3AF92DC493BFDB701 /* PanelState.swift */; };
+		786385E1380AB4B36FDED1AA /* SettingsPanelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E360A746C4670BD226C5BC /* SettingsPanelUITests.swift */; };
 		7FD79857B2F8A5ACF1852244 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5197F52B0414A3AA5D01C5F3 /* XCTest.framework */; };
+		80414A661058A839BE6E2E65 /* PanelStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B504CE7E30F5AE62B72E18 /* PanelStateTests.swift */; };
+		8589FEA459DB1ADAB7932815 /* PanelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1558B3F3AF92DC493BFDB701 /* PanelState.swift */; };
 		887FFA7B65A83DD28924A7E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F68EE596B0E3CDC45E268BDB /* Foundation.framework */; };
 		A1000001 /* TinyKeyboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001 /* TinyKeyboardApp.swift */; };
 		A1000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000002 /* ContentView.swift */; };
-		BB000002 /* BuildInfo.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001 /* BuildInfo.generated.swift */; };
 		A1000003 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000003 /* KeyboardViewController.swift */; };
 		A1000004 /* TinyKeyboardExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A3000002 /* TinyKeyboardExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A1000005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000005 /* Assets.xcassets */; };
+		BB000002 /* BuildInfo.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000001 /* BuildInfo.generated.swift */; };
+		C54AB28728250289C3DB7353 /* SettingsPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7230F734B956AF5C23652CB /* SettingsPanelView.swift */; };
+		EB78FF29278F8016158BC5AB /* SettingsPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7230F734B956AF5C23652CB /* SettingsPanelView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,20 +68,26 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		108633859A7B3F0F67403B91 /* ExtensionManifestTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExtensionManifestTests.swift; sourceTree = "<group>"; };
+		1558B3F3AF92DC493BFDB701 /* PanelState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PanelState.swift; sourceTree = "<group>"; };
 		5197F52B0414A3AA5D01C5F3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		53B504CE7E30F5AE62B72E18 /* PanelStateTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PanelStateTests.swift; sourceTree = "<group>"; };
 		5B73CC602E3FB6C8F4BBEA92 /* KeyboardLayoutUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutUITests.swift; sourceTree = "<group>"; };
 		7260634E33A97EE47C9A2546 /* TinyKeyboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyKeyboardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72C32E09B6172AF2CEF723C7 /* TinyKeyboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinyKeyboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE188517F9745640194E47E /* TinyKeyboardExtension.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = TinyKeyboardExtension.entitlements; sourceTree = "<group>"; };
 		A2000001 /* TinyKeyboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyKeyboardApp.swift; sourceTree = "<group>"; };
 		A2000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		BB000001 /* BuildInfo.generated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BuildInfo.generated.swift; sourceTree = "<group>"; };
 		A2000003 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		A2000004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2000005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3000002 /* TinyKeyboardExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TinyKeyboardExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3000003 /* TinyKeyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyKeyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7230F734B956AF5C23652CB /* SettingsPanelView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsPanelView.swift; sourceTree = "<group>"; };
 		B93688ED03608627A2D1B788 /* TinyKeyboard.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = TinyKeyboard.entitlements; sourceTree = "<group>"; };
+		BB000001 /* BuildInfo.generated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BuildInfo.generated.swift; sourceTree = "<group>"; };
+		CD6FE0CCDFB06A666A58485F /* KeyboardViewControllerTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyboardViewControllerTests.swift; sourceTree = "<group>"; };
+		D5E360A746C4670BD226C5BC /* SettingsPanelUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsPanelUITests.swift; sourceTree = "<group>"; };
 		F68EE596B0E3CDC45E268BDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
@@ -143,6 +157,8 @@
 				A2000003 /* KeyboardViewController.swift */,
 				A2000004 /* Info.plist */,
 				8AE188517F9745640194E47E /* TinyKeyboardExtension.entitlements */,
+				1558B3F3AF92DC493BFDB701 /* PanelState.swift */,
+				A7230F734B956AF5C23652CB /* SettingsPanelView.swift */,
 			);
 			path = TinyKeyboardExtension;
 			sourceTree = "<group>";
@@ -171,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				5B73CC602E3FB6C8F4BBEA92 /* KeyboardLayoutUITests.swift */,
+				D5E360A746C4670BD226C5BC /* SettingsPanelUITests.swift */,
 			);
 			name = TinyKeyboardUITests;
 			path = TinyKeyboardUITests;
@@ -179,6 +196,9 @@
 		E7405246E553D45BD45CF846 /* TinyKeyboardTests */ = {
 			isa = PBXGroup;
 			children = (
+				53B504CE7E30F5AE62B72E18 /* PanelStateTests.swift */,
+				CD6FE0CCDFB06A666A58485F /* KeyboardViewControllerTests.swift */,
+				108633859A7B3F0F67403B91 /* ExtensionManifestTests.swift */,
 			);
 			name = TinyKeyboardTests;
 			path = TinyKeyboardTests;
@@ -331,43 +351,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXSourcesBuildPhase section */
-		3786F27EA82D0F0BD787B734 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				05918366F8EE262FFDF5FE52 /* KeyboardLayoutUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		403CD645C3E045D03EE6A9D5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				662B38515227AF10E628AAA9 /* KeyboardViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A9000001 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A1000001 /* TinyKeyboardApp.swift in Sources */,
-				A1000002 /* ContentView.swift in Sources */,
-				BB000002 /* BuildInfo.generated.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A9000003 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A1000003 /* KeyboardViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
 /* Begin PBXShellScriptBuildPhase section */
 		BB000003 /* Generate BuildInfo */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -389,6 +372,51 @@
 			shellScript = "#!/bin/sh\nSHA=$(git -C \"$SRCROOT\" rev-parse --short HEAD 2>/dev/null || echo '0000000')\nMSG=$(git -C \"$SRCROOT\" log -1 --format='%s' 2>/dev/null | sed \"s/'/\\\\'/g\" || echo 'unknown')\nDATE=$(date -u '+%Y-%m-%dT%H:%M:%SZ')\ncat > \"$SRCROOT/TinyKeyboard/BuildInfo.generated.swift\" << EOF\n// Auto-generated by build — do not edit manually\nenum BuildInfo {\n    static let commitSHA = \"$SHA\"\n    static let commitMessage = \"$MSG\"\n    static let buildDate = \"$DATE\"\n}\nEOF\n";
 		};
 /* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3786F27EA82D0F0BD787B734 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05918366F8EE262FFDF5FE52 /* KeyboardLayoutUITests.swift in Sources */,
+				786385E1380AB4B36FDED1AA /* SettingsPanelUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		403CD645C3E045D03EE6A9D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				662B38515227AF10E628AAA9 /* KeyboardViewController.swift in Sources */,
+				743EAEF2F45A73D60D235955 /* PanelState.swift in Sources */,
+				C54AB28728250289C3DB7353 /* SettingsPanelView.swift in Sources */,
+				80414A661058A839BE6E2E65 /* PanelStateTests.swift in Sources */,
+				6E162479CDA379EE8BCCEB75 /* KeyboardViewControllerTests.swift in Sources */,
+				4349F6A8588EA4F4767271EA /* ExtensionManifestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000001 /* TinyKeyboardApp.swift in Sources */,
+				A1000002 /* ContentView.swift in Sources */,
+				BB000002 /* BuildInfo.generated.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9000003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000003 /* KeyboardViewController.swift in Sources */,
+				8589FEA459DB1ADAB7932815 /* PanelState.swift in Sources */,
+				EB78FF29278F8016158BC5AB /* SettingsPanelView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		A4000002 /* PBXTargetDependency */ = {
@@ -421,7 +449,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = TinyKeyboard;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -438,7 +466,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TinyKeyboard.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TinyKeyboard";
 			};
 			name = Debug;
@@ -498,6 +526,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -505,7 +534,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.trillium.TinyKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -520,6 +549,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -527,7 +557,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.trillium.TinyKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -546,7 +576,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.trillium.TinyKeyboard.keyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -565,7 +595,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.trillium.TinyKeyboard.keyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -580,7 +610,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TinyKeyboard.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TinyKeyboard";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -596,7 +626,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = TinyKeyboard;
 			};
 			name = Debug;
