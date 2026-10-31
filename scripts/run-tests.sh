@@ -52,6 +52,9 @@ run_ui() {
   xcrun simctl bootstatus "$UDID" -b >/dev/null
   xcrun simctl spawn "$UDID" defaults write -g AppleKeyboards -array \
     "en_US@sw=QWERTY;hw=Automatic" "emoji@sw=Emoji" "$EXTENSION_ID"
+  # Without this the globe key only cycles QWERTY <-> Emoji and never reaches
+  # the extension, so the real-extension UI test silently skips.
+  xcrun simctl spawn "$UDID" defaults write -g AppleKeyboardsExpanded -bool true
   xcrun simctl shutdown "$UDID"
   xcrun simctl boot "$UDID"
   xcrun simctl bootstatus "$UDID" -b >/dev/null
