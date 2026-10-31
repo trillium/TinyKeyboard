@@ -22,12 +22,15 @@ final class SettingsPanelUITests: XCTestCase {
         let field = app.textFields["test-text-field"]
         XCTAssertTrue(field.waitForExistence(timeout: 5))
         field.tap()
-        guard app.keyboards.firstMatch.waitForExistence(timeout: 5) else {
-            throw XCTSkip("No software keyboard — hardware keyboard may be connected")
-        }
         let collapse = app.buttons["tk-panel-collapse"]
         // iOS reopens the last-used keyboard, so TinyKeyboard may already be up
-        // (still loading). Cycling away from it would defeat the test.
+        // (still loading). Cycling away from it would defeat the test. A
+        // third-party keyboard never shows as `app.keyboards`, so its panel is
+        // the other sign that a software keyboard is on screen.
+        guard app.keyboards.firstMatch.waitForExistence(timeout: 5)
+            || collapse.waitForExistence(timeout: 5) else {
+            throw XCTSkip("No software keyboard — hardware keyboard may be connected")
+        }
         _ = collapse.waitForExistence(timeout: 5)
         for _ in 0..<4 where !collapse.exists {
             // The switch key is labelled "Next keyboard", or after the keyboard it
