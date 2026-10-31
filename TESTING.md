@@ -23,7 +23,7 @@ Needs Xcode 26 and an installed iOS simulator. No signing, no device.
 
 ## UI test limits
 
-- `scripts/run-tests.sh` enables TinyKeyboard in the simulator by writing `AppleKeyboards`, then reboots the simulator. Without that step `SettingsPanelUITests` skips (it does not fail).
+- `scripts/run-tests.sh` enables TinyKeyboard in the simulator by writing `AppleKeyboards` and `AppleKeyboardsExpanded` (without the latter the globe key never reaches the extension), then reboots the simulator. Without that step `SettingsPanelUITests` skips (it does not fail).
 - After the first app launch on a booted simulator, XCUITest can connect the Mac's hardware keyboard, which hides the software keyboard. That is why the extension flow is one test method and the script reboots first.
 - Opt-in App Store screenshot capture tests in `KeyboardLayoutUITests` are skipped unless `AppStore/screenshots/CAPTURE` exists (see `AppStore/README.md`).
 
