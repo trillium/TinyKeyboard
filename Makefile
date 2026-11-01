@@ -1,5 +1,6 @@
 SHELL := /bin/bash
 SCRIPT_FILES := $(wildcard scripts/*.sh) ota-publish.sh
+Q := '
 
 .PHONY: help check shell phone-test ship-gate stable-install phone-session test
 
@@ -19,5 +20,5 @@ ship-gate: ## prove HEAD (clean tree, tests green) and write build/ship-pass/<sh
 stable-install: ## install HEAD on the captain's iPhone over Tailscale, no link, no tap; REFUSES without a ship-gate pass
 	scripts/stable-install.sh
 phone-session: ## run CMD under the phone lock with DEVICE_ID from phone-reach
-	@test -n "$$CMD" || { echo "usage: make phone-session CMD='...'" >&2; exit 2; }
-	scripts/phone-session.sh bash -c "$$CMD"
+	@test -n '$(subst $(Q),$(Q)\$(Q)$(Q),$(value CMD))' || { echo "usage: make phone-session CMD='...'" >&2; exit 2; }
+	scripts/phone-session.sh bash -c '$(subst $(Q),$(Q)\$(Q)$(Q),$(value CMD))'

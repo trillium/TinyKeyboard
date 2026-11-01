@@ -40,6 +40,9 @@ check "session gives the command the device from phone-reach and holds the lock"
 check "session releases the lock" '[ ! -e "$PHONE_LOCK" ]'
 check "session asks phone-reach to wait 120s" 'grep -qx "phone-reach --wait 120" "$CALLS"'
 
+out="$(make -s -C "$ROOT" phone-session CMD='echo "id=$DEVICE_ID"' 2>&1)"
+check "make phone-session CMD='...' passes \$DEVICE_ID through to the command" '[ "$out" = "id=STUB-DEVICE-ID" ]'
+
 : >"$CALLS"
 "$ROOT/scripts/phone-session.sh" bash -c 'exit 7' >/dev/null 2>&1; rc=$?
 check "session exits with the command's status" '[ "$rc" = 7 ]'
