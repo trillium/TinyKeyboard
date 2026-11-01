@@ -13,18 +13,25 @@ phone_die() { phone_say "error: $*"; exit 1; }
 # phone_lock_take COMMAND...: mkdir the lock; a lock whose holder is gone is reclaimed.
 # A lock with no pid yet belongs to a holder that has only just made it: wait, never reclaim.
 phone_lock_take() {
-  local tries=0 pid
+  local tries=0 pid stale
   while ! mkdir "$PHONE_LOCK" 2>/dev/null; do
     tries=$((tries + 1))
     [ "$tries" -le 3 ] || phone_die "cannot take the phone lock $PHONE_LOCK"
     pid="$(cat "$PHONE_LOCK/pid" 2>/dev/null || true)"
     if [ -z "$pid" ]; then sleep 1; continue; fi
-    if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
+    if kill -0 "$pid" 2>/dev/null; then
       phone_die "phone lock $PHONE_LOCK is held by pid $pid running '$(cat "$PHONE_LOCK/command" 2>/dev/null || echo '?')'; refusing"
     fi
     phone_say "reclaiming stale lock $PHONE_LOCK (holder $pid is gone)"
-    # rename first: of two racing reclaimers only one rename succeeds
-    if mv "$PHONE_LOCK" "$PHONE_LOCK.stale.$$" 2>/dev/null; then rm -rf "$PHONE_LOCK.stale.$$"; fi
+    # rename first, then delete only if what was renamed is still the dead holder's lock
+    stale="$PHONE_LOCK.stale.$$"
+    if mv "$PHONE_LOCK" "$stale" 2>/dev/null; then
+      if [ "$(cat "$stale/pid" 2>/dev/null || true)" != "$pid" ]; then
+        [ -e "$PHONE_LOCK" ] || mv "$stale" "$PHONE_LOCK"
+        phone_die "phone lock $PHONE_LOCK was retaken while reclaiming it; refusing"
+      fi
+      rm -rf "$stale"
+    fi
   done
   printf '%s\n' "$$" >"$PHONE_LOCK/pid"
   date +%s >"$PHONE_LOCK/started"

@@ -55,6 +55,16 @@ check "lock held by a live process: refused, phone-reach never called" '[ "$rc" 
 echo 999999 >"$PHONE_LOCK/pid"
 "$ROOT/scripts/phone-session.sh" true >/dev/null 2>&1; rc=$?
 check "stale lock is reclaimed" '[ "$rc" = 0 ] && [ ! -e "$PHONE_LOCK" ]'
+mkdir -p "$T/racebin" "$PHONE_LOCK"; echo 999999 >"$PHONE_LOCK/pid"; : >"$CALLS"
+cat >"$T/racebin/mv" <<STUB
+#!/bin/bash
+echo $$ >"\$PHONE_LOCK/pid"
+exec /bin/mv "\$@"
+STUB
+chmod +x "$T/racebin/mv"
+PATH="$T/racebin:$PATH" "$ROOT/scripts/phone-session.sh" true >/dev/null 2>&1; rc=$?
+check "lock retaken by a live holder mid-reclaim is refused and kept" '[ "$rc" != 0 ] && [ ! -s "$CALLS" ] && [ "$(cat "$PHONE_LOCK/pid")" = $$ ]'
+rm -rf "$PHONE_LOCK" "$PHONE_LOCK".stale.*
 mkdir "$PHONE_LOCK"; : >"$CALLS"
 "$ROOT/scripts/phone-session.sh" true >/dev/null 2>&1; rc=$?
 check "lock with no pid yet is never reclaimed" '[ "$rc" != 0 ] && [ ! -s "$CALLS" ] && [ -d "$PHONE_LOCK" ]'
