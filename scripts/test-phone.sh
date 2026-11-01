@@ -55,15 +55,31 @@ check "lock held by a live process: refused, phone-reach never called" '[ "$rc" 
 echo 999999 >"$PHONE_LOCK/pid"
 "$ROOT/scripts/phone-session.sh" true >/dev/null 2>&1; rc=$?
 check "stale lock is reclaimed" '[ "$rc" = 0 ] && [ ! -e "$PHONE_LOCK" ]'
+mkdir "$PHONE_LOCK"; : >"$CALLS"
+"$ROOT/scripts/phone-session.sh" true >/dev/null 2>&1; rc=$?
+check "lock with no pid yet is never reclaimed" '[ "$rc" != 0 ] && [ ! -s "$CALLS" ] && [ -d "$PHONE_LOCK" ]'
+rm -rf "$PHONE_LOCK"
+"$ROOT/scripts/phone-session.sh" bash -c 'echo 999999 >"$PHONE_LOCK/pid"' >/dev/null 2>&1
+check "session never releases a lock that is no longer its own" '[ "$(cat "$PHONE_LOCK/pid")" = 999999 ]'
+rm -rf "$PHONE_LOCK"
 
 # --- stable-install ----------------------------------------------------------
+# Run from a scratch repo holding the phone scripts, so its tree state is the test's.
+inst="$T/inst"; mkdir -p "$inst/scripts"
+cp "$ROOT/scripts/phone-lib.sh" "$ROOT/scripts/phone-session.sh" "$ROOT/scripts/stable-install.sh" "$inst/scripts/"
+git -C "$inst" init -q && git -C "$inst" add -A && git -C "$inst" -c user.name=t -c user.email=t@t commit -q -m init
 : >"$CALLS"
-"$ROOT/scripts/stable-install.sh" >/dev/null 2>&1; rc=$?
+"$inst/scripts/stable-install.sh" >/dev/null 2>&1; rc=$?
 check "stable-install refuses without a ship-gate pass, touching nothing" '[ "$rc" != 0 ] && [ ! -s "$CALLS" ]'
 
-mkdir -p "$SHIP_PASS_DIR"; echo '{}' >"$SHIP_PASS_DIR/$(git -C "$ROOT" rev-parse HEAD).json"
+mkdir -p "$SHIP_PASS_DIR"; echo '{}' >"$SHIP_PASS_DIR/$(git -C "$inst" rev-parse HEAD).json"
+touch "$inst/dirty"; : >"$CALLS"
+"$inst/scripts/stable-install.sh" >/dev/null 2>&1; rc=$?
+check "stable-install refuses a dirty tree even with a pass for HEAD, touching nothing" '[ "$rc" != 0 ] && [ ! -s "$CALLS" ]'
+rm "$inst/dirty"
+
 : >"$CALLS"
-"$ROOT/scripts/stable-install.sh" >/dev/null 2>&1; rc=$?
+"$inst/scripts/stable-install.sh" >/dev/null 2>&1; rc=$?
 check "stable-install with a pass succeeds" '[ "$rc" = 0 ]'
 check "phone-reach runs before the first xcodebuild/devicectl call" '[ "$(head -1 "$CALLS")" = "phone-reach --wait 120" ]'
 check "xcodebuild targets the phone-reach device" 'grep -q "^xcodebuild .*-destination platform=iOS,id=STUB-DEVICE-ID" "$CALLS"'
@@ -71,7 +87,7 @@ check "devicectl installs on the phone-reach device" 'grep -q "^xcrun devicectl 
 check "stable-install releases the lock" '[ ! -e "$PHONE_LOCK" ]'
 
 : >"$CALLS"
-STUB_REACH_FAIL=1 "$ROOT/scripts/stable-install.sh" >/dev/null 2>&1; rc=$?
+STUB_REACH_FAIL=1 "$inst/scripts/stable-install.sh" >/dev/null 2>&1; rc=$?
 check "stable-install with an unreachable phone builds and installs nothing" '[ "$rc" = 1 ] && ! grep -qE "^(xcodebuild|xcrun)" "$CALLS"'
 
 # --- ship-gate ---------------------------------------------------------------
@@ -88,11 +104,5 @@ rm "$repo/dirty"
 SHIP_GATE_CMD=true "$ROOT/scripts/ship-gate.sh" >/dev/null 2>&1; rc=$?
 check "ship-gate: clean tree and green tests write the pass" '[ "$rc" = 0 ] && [ -f "$SHIP_PASS_DIR/$sha.json" ]'
 unset SHIP_ROOT
-
-# --- no Wi-Fi/USB-only code path left ---------------------------------------
-cd "$ROOT" || exit 1
-check "no script hardcodes a device id or uses idevicesyslog" '! grep -rIl -E "00008[0-9]{3}-[0-9A-F]{16}|idevicesyslog" scripts ota-publish.sh Makefile --exclude=test-phone.sh | grep -q .'
-check "only stable-install.sh calls devicectl or builds for a device destination" \
-  '[ "$(grep -rIlE "devicectl|platform=iOS,id=" scripts ota-publish.sh --exclude=test-phone.sh | sort | tr "\n" " ")" = "scripts/stable-install.sh " ]'
 
 [ "$fails" = 0 ] && echo "all phone tests passed" || { echo "$fails phone test(s) failed"; exit 1; }

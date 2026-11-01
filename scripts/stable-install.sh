@@ -4,9 +4,10 @@
 #
 #   make ship-gate && make stable-install
 #
-# REFUSES unless `make ship-gate` left build/ship-pass/<HEAD sha>.json. The
-# phone is reached through scripts/phone-session.sh (lock + phone-reach), so
-# this script works on any network the phone is on. Never uploads anything.
+# REFUSES unless the tree is clean and `make ship-gate` left
+# build/ship-pass/<HEAD sha>.json. The phone is reached through
+# scripts/phone-session.sh (lock + phone-reach), so this script works on any
+# network the phone is on. Never uploads anything.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -14,6 +15,8 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 . "$ROOT/scripts/phone-lib.sh"
 
 SHIP_PASS_DIR="${SHIP_PASS_DIR:-$ROOT/build/ship-pass}"
+[ -z "$(git -C "$ROOT" status --porcelain)" ] \
+  || phone_die "working tree is not clean; stable-install builds the tree, so it must be exactly the gated HEAD"
 head_sha="$(git -C "$ROOT" rev-parse HEAD)"
 [ -f "$SHIP_PASS_DIR/$head_sha.json" ] \
   || phone_die "no ship-gate pass for HEAD ${head_sha:0:7}; run 'make ship-gate' first"
