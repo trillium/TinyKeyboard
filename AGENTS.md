@@ -127,7 +127,7 @@ The only way to install or refresh the app on the captain's iPhone: an ad-hoc-si
    tailscale serve --bg --https=8784 http://127.0.0.1:8794
    ```
    Check `tailscale serve status` first; port 8784 is TinyKeyboard's. MagicDNS and HTTPS Certificates must be on for the tailnet.
-3. Publish: `./ota-publish.sh` builds, exports ad-hoc, and writes the `.ipa`, `manifest.plist` and `index.html` to `~/ota` (`OTA_DIR`), printing the install page URL `https://<mac>.<tailnet>.ts.net:8784/`. Overrides: `OTA_HTTPS_PORT`, `OTA_LOCAL_PORT`, `OTA_BASE_URL` (must be `https://`).
+3. Publish: `./ota-publish.sh` builds, exports ad-hoc, and writes the `.ipa`, `manifest.plist` and `index.html` to `~/ota` (`OTA_DIR`), printing the install page URL `https://<mac>.<tailnet>.ts.net:8784/`. Override: `OTA_BASE_URL` (must be `https://`).
 4. Install: the captain opens that page in **Safari** (not an in-app browser) with the Tailscale app connected and taps Install.
 
 Stop serving: `tailscale serve --https=8784 off`.

@@ -18,10 +18,6 @@ SCHEME="TinyKeyboard"
 BUNDLE_ID="com.trillium.TinyKeyboard"
 TITLE="TinyKeyboard"
 OTA_DIR="${OTA_DIR:-$HOME/ota}"
-# mini0 port allocation: TinyKeyboard's tailnet HTTPS port is 8784; the
-# loopback static server behind it is that + 10 (8794).
-OTA_HTTPS_PORT="${OTA_HTTPS_PORT:-8784}"
-OTA_LOCAL_PORT="${OTA_LOCAL_PORT:-$((OTA_HTTPS_PORT + 10))}"
 
 cd "$PROJECT_DIR"
 
@@ -45,7 +41,7 @@ ARCHIVE_PATH="$BUILD_DIR/TinyKeyboard.xcarchive"
 EXPORT_PATH="$BUILD_DIR/export"
 
 # Where the published files will be reachable from the iPhone: this Mac's
-# tailnet name on OTA_HTTPS_PORT (derived, never hardcoded). Override
+# tailnet name (derived, never hardcoded) on TinyKeyboard's port 8784. Override
 # OTA_BASE_URL only if the folder is served at a different https:// address.
 if [ -n "${OTA_BASE_URL:-}" ]; then
   # Strip trailing slashes so composed URLs never contain '//'.
@@ -66,7 +62,7 @@ else
     echo "       is tailscale running and logged in, and is MagicDNS enabled for this tailnet?" >&2
     exit 1
   fi
-  OTA_BASE_URL="https://$HOST:$OTA_HTTPS_PORT"
+  OTA_BASE_URL="https://$HOST:8784"
 fi
 
 # Bump the build number so iOS's OTA installer doesn't silently no-op when
@@ -125,6 +121,6 @@ echo "Published build $BUNDLE_VERSION to $OTA_DIR"
 echo "  Install page: $OTA_BASE_URL/"
 echo ""
 echo "If it isn't serving yet (tailnet only; never Funnel, never :443 root or :8443):"
-echo "  (cd $OTA_DIR && python3 -m http.server $OTA_LOCAL_PORT --bind 127.0.0.1) &"
-echo "  tailscale serve --bg --https=$OTA_HTTPS_PORT http://127.0.0.1:$OTA_LOCAL_PORT"
+echo "  (cd $OTA_DIR && python3 -m http.server 8794 --bind 127.0.0.1) &"
+echo "  tailscale serve --bg --https=8784 http://127.0.0.1:8794"
 echo "Then open the install page in Safari on the iPhone with Tailscale connected and tap Install."
