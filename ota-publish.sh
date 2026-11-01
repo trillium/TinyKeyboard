@@ -1,10 +1,12 @@
 #!/bin/bash
-# Build an ad-hoc-signed .ipa and publish it as an OTA (itms-services) install
-# package: manifest.plist + index.html + the .ipa, dropped into a served
-# folder (default ~/ota). This is the ONLY way to install on the captain's
-# iPhone: serve the folder tailnet-only with `tailscale serve --https=8784`
-# (never Funnel, never the :443 root or :8443) and tap Install in Safari with
-# Tailscale connected — see AGENTS.md ("OTA install over Tailscale").
+# NOT the captain's install path (that is `make ship-gate` then `make stable-install`:
+# automatic over Tailscale, no link, no tap). This is a labelled non-captain
+# fallback: build an ad-hoc-signed .ipa and publish it as an OTA (itms-services)
+# package (manifest.plist + index.html + the .ipa) into a served folder
+# (default ~/ota), for someone other than the captain who opens the page
+# themselves. Serve it tailnet-only with `tailscale serve --https=8784` (never
+# Funnel, never the :443 root or :8443); see AGENTS.md ("OTA pages: non-captain
+# fallback"). It never touches the phone.
 #
 # Requires: paid Apple Developer Program team TV2582LRYN already configured
 # in TinyKeyboard.xcodeproj (ad-hoc profiles valid ~1yr, not 7 days), `jq`, and
@@ -123,4 +125,4 @@ echo ""
 echo "If it isn't serving yet (tailnet only; never Funnel, never :443 root or :8443):"
 echo "  (cd $OTA_DIR && python3 -m http.server 8794 --bind 127.0.0.1) &"
 echo "  tailscale serve --bg --https=8784 http://127.0.0.1:8794"
-echo "Then open the install page in Safari on the iPhone with Tailscale connected and tap Install."
+echo "Non-captain fallback only: the captain's phone is installed with 'make stable-install'."

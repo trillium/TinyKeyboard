@@ -6,7 +6,7 @@ The static page is already in the repo:
 - Intended public URL after GitHub Pages is enabled:
   `https://trillium.github.io/TinyKeyboard/privacy-policy.html`
 
-App Store Connect requires a **public** privacy-policy URL. The in-app `PrivacyPolicyView` does not satisfy that. Tailscale OTA (`tailscale serve`) is tailnet-only and does not qualify.
+App Store Connect requires a **public** privacy-policy URL. The in-app `PrivacyPolicyView` does not satisfy that. The OTA fallback pages (`tailscale serve`) are tailnet-only and do not qualify.
 
 GitHub Pages is **enabled** (2026-09-06): source `main` / `(root)`, HTTPS on.
 Live URL: https://trillium.github.io/TinyKeyboard/privacy-policy.html (HTTP 200).

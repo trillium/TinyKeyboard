@@ -62,6 +62,8 @@ This protocol applies when ending a Beads implementation workflow. It is subordi
 ## Build & Test
 
 ```bash
+make check                      # script lint, phone-tooling tests, unit tests
+make ship-gate && make stable-install   # captain's iPhone: automatic over Tailscale (phone-reach), no link, no tap
 scripts/run-tests.sh            # unit + UI tests on a simulator (~2 min); `unit` for unit only
 scripts/archive-release.sh      # Release .xcarchive (never uploads); output build/archive/
 ```
