@@ -1,9 +1,8 @@
 #!/bin/bash
-# Rebuild and reinstall TinyKeyboard to refresh provisioning profile
-# Requires: iPhone reachable via USB or same-LAN wireless debugging, and
-# trusted; Apple ID signed in to Xcode.
-# For remote installs (no USB, no same-LAN, any network) use ota-publish.sh
-# instead — see AGENTS.md for the one-time Tailscale setup.
+# NOT THE INSTALL PATH. Legacy USB/devicectl developer helper, kept only for
+# local debugging. Never use it to put the app on the captain's iPhone: the one
+# install path is OTA over Tailscale (./ota-publish.sh — see AGENTS.md,
+# "OTA install over Tailscale").
 set -e
 
 PROJECT_DIR="/Users/trilliumsmith/code/TinyKeyboard"
