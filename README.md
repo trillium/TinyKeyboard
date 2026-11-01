@@ -19,18 +19,16 @@ iOS requires a keyboard to be active for text input fields to accept focus. If y
 
 ## Install
 
-The only supported way to put TinyKeyboard on an iPhone is over the air, over Tailscale. There is no USB, Xcode Run or home-Wi-Fi install path.
+On the captain's iPhone the install is automatic, over Tailscale: no link, no tap.
 
 ```bash
-scripts/run-tests.sh   # gate: must pass before publishing
-./ota-publish.sh       # ad-hoc build + manifest + install page into ~/ota
+make ship-gate        # proves HEAD (tests green, tree clean); never touches the phone
+make stable-install   # reaches the phone with phone-reach, builds, installs with devicectl
 ```
 
-`ota-publish.sh` writes the `.ipa`, `manifest.plist` and `index.html` into `~/ota` (override with `OTA_DIR`). They are served tailnet-only on port 8784 with `tailscale serve --https=8784` (never Funnel, never the `:443` root or `:8443`); the one-time setup is in **`AGENTS.md`**, "OTA install over Tailscale".
+`make stable-install` refuses without a ship-gate pass for HEAD and runs under `scripts/phone-session.sh` (phone lock, then `phone-reach`), so it works on whatever network the phone is on. Requires the iPhone registered for team `TV2582LRYN`.
 
-Then, on the iPhone with the Tailscale app connected, open the printed `https://<mac>.<tailnet>.ts.net:8784/` page in **Safari** and tap Install.
-
-Requires a **paid** Apple Developer Program membership on team `TV2582LRYN` (ad-hoc profiles last about a year) and the iPhone registered for that team.
+`./ota-publish.sh` is a non-captain fallback that publishes an OTA install page for someone else to open; it is not how the captain's phone is installed (`AGENTS.md`, "OTA pages: non-captain fallback").
 
 After installing, enable the keyboard on the iPhone: **Settings → General → Keyboard → Keyboards → Add New Keyboard → TinyKeyboard**. If prompted, trust the developer profile in **Settings → General → VPN & Device Management**.
 

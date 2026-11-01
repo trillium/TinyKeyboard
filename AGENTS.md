@@ -116,25 +116,23 @@ bd prime                # Refresh Beads context
 **Architecture in one line:** issues live in a local Dolt DB; sync uses `refs/dolt/data` on your git remote; `.beads/issues.jsonl` is a passive export. See https://github.com/gastownhall/beads/blob/main/docs/SYNC_CONCEPTS.md for details and anti-patterns.
 <!-- END BEADS CODEX SETUP -->
 
-## OTA install over Tailscale
+## Installing on the captain's iPhone
 
-The only way to install or refresh the app on the captain's iPhone: an ad-hoc-signed `.ipa` plus an `itms-services` manifest, served tailnet-only. No USB, devicectl, Xcode Run or home Wi-Fi (`reinstall.sh` is a legacy debug helper, not an install path). Team `TV2582LRYN` is a paid membership, so ad-hoc profiles last ~1 year.
+`make ship-gate` then `make stable-install`. That is the whole path: no link, no tap, nothing for the captain to do.
 
-1. Gate: `scripts/run-tests.sh` must pass on the commit you publish.
-2. Serve (once; rerun after a reboot) with `tailscale serve --https=8784`, never Funnel, never the `:443` root or `:8443`. The loopback server is port 8794:
-   ```bash
-   (cd ~/ota && python3 -m http.server 8794 --bind 127.0.0.1) &
-   tailscale serve --bg --https=8784 http://127.0.0.1:8794
-   ```
-   Check `tailscale serve status` first; port 8784 is TinyKeyboard's. MagicDNS and HTTPS Certificates must be on for the tailnet.
-3. Publish: `./ota-publish.sh` builds, exports ad-hoc, and writes the `.ipa`, `manifest.plist` and `index.html` to `~/ota` (`OTA_DIR`), printing the install page URL `https://<mac>.<tailnet>.ts.net:8784/`. Override: `OTA_BASE_URL` (must be `https://`).
-4. Install: the captain opens that page in **Safari** (not an in-app browser) with the Tailscale app connected and taps Install.
+- `make ship-gate` proves HEAD (clean tree, `make check`, simulator UI tests) and writes `build/ship-pass/<sha>.json`. It never touches the phone.
+- `make stable-install` refuses without that pass for HEAD, then runs under `scripts/phone-session.sh`: it takes `~/.fm-phone-lock`, runs `DEVICE_ID="$(phone-reach --wait 120)"`, builds for that device and installs it with devicectl. `phone-reach` reaches the phone over Tailscale by default and uses a shared LAN only if the phone happens to be on it; the phone needs no particular network.
+- Anything else that talks to the phone goes through `make phone-session CMD='...'` and reads `$DEVICE_ID`; never hardcode a device id or call `devicectl` outside that session.
+- If `phone-reach` says the phone is unreachable (`phone-closed`, `no-wifi`, `locked`, ...), report that reason; do not ask for a link or a network change.
 
-Stop serving: `tailscale serve --https=8784 off`.
+## OTA pages: non-captain fallback
+
+`./ota-publish.sh` still builds an ad-hoc `.ipa` plus an `itms-services` manifest and install page into `~/ota`, for someone who is not the captain and opens the page themselves. It is never the captain's install path and nothing should send him a link. Serve it tailnet-only with `tailscale serve --bg --https=8784 http://127.0.0.1:8794` (loopback server on port 8794 over `~/ota`; never Funnel, never the `:443` root or `:8443`); `OTA_BASE_URL` overrides the base (must be `https://`). Stop serving: `tailscale serve --https=8784 off`.
 
 ## Build & Test
 
 ```bash
+make check                      # script lint, phone-tooling tests, unit tests
 scripts/run-tests.sh            # unit + UI tests on a simulator (~2 min); `unit` for unit only
 scripts/archive-release.sh      # Release .xcarchive (never uploads); output build/archive/
 ```
