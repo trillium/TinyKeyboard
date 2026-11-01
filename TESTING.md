@@ -29,7 +29,7 @@ Needs Xcode 26 and an installed iOS simulator. No signing, no device.
 
 ## Not covered by automation: check on a real iPhone before submitting
 
-1. Install the build, add TinyKeyboard in Settings → General → Keyboard → Keyboards.
+1. Install the build over the air (`AGENTS.md`, "OTA install over Tailscale"), then add TinyKeyboard in Settings → General → Keyboard → Keyboards.
 2. Focus a text field, switch to TinyKeyboard with the globe. The panel should appear above the system dock.
 3. Tap Delete / Return / Hide keyboard / globe, then Collapse. Only the system dock should remain.
 4. Switch away and back. The panel should return (iOS normally creates a fresh controller on each switch; if it does not on some iOS version, see "Open risk" in `Plans/submission/SUBMISSION_PACKAGE.md`).

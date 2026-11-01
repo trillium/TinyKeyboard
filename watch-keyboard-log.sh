@@ -1,4 +1,5 @@
 #!/bin/bash
+# Not an install path (install is OTA over Tailscale only: see AGENTS.md).
 # Stream ONLY TinyKeyboard-related lines from the connected iPhone's syslog.
 # Requires: libimobiledevice (idevicesyslog), iPhone connected + unlocked.
 set -e

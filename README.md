@@ -19,46 +19,20 @@ iOS requires a keyboard to be active for text input fields to accept focus. If y
 
 ## Install
 
-Requires Xcode and an Apple Developer account (free works, but profiles expire after 7 days).
-
-1. Open `TinyKeyboard.xcodeproj` in Xcode
-2. Select your team in Signing & Capabilities for both targets (TinyKeyboard and TinyKeyboardExtension)
-3. Connect your iPhone and select it as the run destination
-4. Build & Run (Cmd+R)
-5. On your iPhone: **Settings → General → Keyboard → Keyboards → Add New Keyboard → TinyKeyboard**
-6. If prompted, trust the developer profile in **Settings → General → VPN & Device Management**
-
-### CLI install
+The only supported way to put TinyKeyboard on an iPhone is over the air, over Tailscale. There is no USB, Xcode Run or home-Wi-Fi install path.
 
 ```bash
-# Build
-xcodebuild -project TinyKeyboard.xcodeproj -scheme TinyKeyboard \
-  -destination 'platform=iOS,id=YOUR_DEVICE_ID' \
-  -allowProvisioningUpdates build
-
-# Install
-xcrun devicectl device install app \
-  --device YOUR_DEVICE_ID \
-  path/to/Build/Products/Debug-iphoneos/TinyKeyboard.app
+scripts/run-tests.sh   # gate: must pass before publishing
+./ota-publish.sh       # ad-hoc build + manifest + install page into ~/ota
 ```
 
-Find your device ID with `xcrun xctrace list devices`.
+`ota-publish.sh` writes the `.ipa`, `manifest.plist` and `index.html` into `~/ota` (override with `OTA_DIR`). They are served tailnet-only on port 8784 with `tailscale serve --https=8784` (never Funnel, never the `:443` root or `:8443`); the one-time setup is in **`AGENTS.md`**, "OTA install over Tailscale".
 
-## Remote install over Tailscale (OTA)
+Then, on the iPhone with the Tailscale app connected, open the printed `https://<mac>.<tailnet>.ts.net:8784/` page in **Safari** and tap Install.
 
-To install or refresh the app on an iPhone that isn't on the same LAN or plugged in — anywhere it has cellular or Wi-Fi and the Tailscale app connected — use the OTA (over-the-air) flow instead of `reinstall.sh`:
+Requires a **paid** Apple Developer Program membership on team `TV2582LRYN` (ad-hoc profiles last about a year) and the iPhone registered for that team.
 
-```bash
-./ota-publish.sh
-```
-
-This builds an ad-hoc-signed `.ipa`, bumps the build number, and writes `manifest.plist` + `index.html` + the `.ipa` into `~/ota` (override with `OTA_DIR`). Serving those files and installing from the iPhone requires a one-time setup — see **`AGENTS.md`** for the full walkthrough (Tailscale admin console settings, `tailscale serve`, where to mount it via `OTA_BASE_URL`, and the install steps).
-
-Requires a **paid** Apple Developer Program membership on team `TV2582LRYN` — ad-hoc profiles are then valid for about a year instead of the free tier's 7 days.
-
-## Free account reprovisioning (same-LAN only)
-
-With a free Apple Developer account, the provisioning profile expires every 7 days. The included `reinstall.sh` script rebuilds and reinstalls in one step over USB or same-LAN wireless debugging. A LaunchAgent can automate this weekly. This does not work from outside the LAN — for that, use the OTA flow above.
+After installing, enable the keyboard on the iPhone: **Settings → General → Keyboard → Keyboards → Add New Keyboard → TinyKeyboard**. If prompted, trust the developer profile in **Settings → General → VPN & Device Management**.
 
 ## License
 

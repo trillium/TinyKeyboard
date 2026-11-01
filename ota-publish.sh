@@ -1,14 +1,16 @@
 #!/bin/bash
 # Build an ad-hoc-signed .ipa and publish it as an OTA (itms-services) install
 # package: manifest.plist + index.html + the .ipa, dropped into a served
-# folder (default ~/ota). Reach it over Tailscale with `tailscale serve` and
-# install by tapping the link in Safari on the iPhone — see AGENTS.md for the
-# one-time human setup (MagicDNS/HTTPS Certificates, tailscale serve).
+# folder (default ~/ota). This is the ONLY way to install on the captain's
+# iPhone: serve the folder tailnet-only with `tailscale serve --https=8784`
+# (never Funnel, never the :443 root or :8443) and tap Install in Safari with
+# Tailscale connected — see AGENTS.md ("OTA install over Tailscale").
 #
 # Requires: paid Apple Developer Program team TV2582LRYN already configured
 # in TinyKeyboard.xcodeproj (ad-hoc profiles valid ~1yr, not 7 days), `jq`, and
 # the `tailscale` CLI logged in on this Mac (only when OTA_BASE_URL is unset —
-# it's what the default base URL is derived from).
+# it's what the default base URL is derived from). Run scripts/run-tests.sh
+# first; never publish a build that fails it.
 set -e
 
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -38,11 +40,9 @@ trap 'rm -rf "$BUILD_DIR"' EXIT
 ARCHIVE_PATH="$BUILD_DIR/TinyKeyboard.xcarchive"
 EXPORT_PATH="$BUILD_DIR/export"
 
-# Where the published files will be reachable from the iPhone. Defaults to this
-# Mac's tailnet root (derived, never hardcoded). Override OTA_BASE_URL when the
-# HTTPS root is already serving something else — e.g. an alternate port
-# (https://<mac>.<tailnet>.ts.net:8443) or a subpath mount
-# (https://<mac>.<tailnet>.ts.net/ota). See AGENTS.md.
+# Where the published files will be reachable from the iPhone: this Mac's
+# tailnet name (derived, never hardcoded) on TinyKeyboard's port 8784. Override
+# OTA_BASE_URL only if the folder is served at a different https:// address.
 if [ -n "${OTA_BASE_URL:-}" ]; then
   # Strip trailing slashes so composed URLs never contain '//'.
   while [ "${OTA_BASE_URL%/}" != "$OTA_BASE_URL" ]; do OTA_BASE_URL="${OTA_BASE_URL%/}"; done
@@ -62,7 +62,7 @@ else
     echo "       is tailscale running and logged in, and is MagicDNS enabled for this tailnet?" >&2
     exit 1
   fi
-  OTA_BASE_URL="https://$HOST"
+  OTA_BASE_URL="https://$HOST:8784"
 fi
 
 # Bump the build number so iOS's OTA installer doesn't silently no-op when
@@ -120,6 +120,7 @@ echo ""
 echo "Published build $BUNDLE_VERSION to $OTA_DIR"
 echo "  Install page: $OTA_BASE_URL/"
 echo ""
-echo "If the static server + 'tailscale serve' aren't already running, see the"
-echo "one-time setup in AGENTS.md, then: (cd $OTA_DIR && python3 -m http.server 8080)"
-echo "and expose it with 'tailscale serve' — pick the mount that matches OTA_BASE_URL (AGENTS.md)."
+echo "If it isn't serving yet (tailnet only; never Funnel, never :443 root or :8443):"
+echo "  (cd $OTA_DIR && python3 -m http.server 8794 --bind 127.0.0.1) &"
+echo "  tailscale serve --bg --https=8784 http://127.0.0.1:8794"
+echo "Then open the install page in Safari on the iPhone with Tailscale connected and tap Install."
